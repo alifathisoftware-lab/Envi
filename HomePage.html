@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envi | شريكك التقني في رحلة التحول الرقمي</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #FFFFFF;
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #1E3A8A, #3B82F6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .fade-in {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .remove-bg {
+            mix-blend-mode: multiply;
+        }
+        .logo-shadow {
+            filter: drop-shadow(2px 4px 6px rgba(10, 37, 64, 0.15));
+        }
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(34, 197, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+        .whatsapp-pulse {
+            animation: pulse-green 2s infinite;
+        }
+    </style>
+</head>
+<body class="text-slate-700 overflow-x-hidden">
+
+    <!-- شريط التنقل (Navbar) -->
+    <nav class="bg-white/90 backdrop-blur-md border-b border-slate-100 fixed w-full top-0 z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="images/Logo.png" alt="EnVi Logo" class="w-16 h-10 object-contain remove-bg logo-shadow">
+            </div>
+            
+            <div class="hidden md:flex space-x-8 space-x-reverse text-slate-600 font-medium">
+                <a href="#home" class="hover:text-[#0A2540] transition">الرئيسية</a>
+                <a href="#work" class="hover:text-[#0A2540] transition">كيف نعمل</a>
+                <a href="#services" class="hover:text-[#0A2540] transition">خدماتنا</a>
+                <a href="#products" class="hover:text-[#0A2540] transition">منتجاتنا</a>
+                <a href="#why" class="hover:text-[#0A2540] transition">لماذا Envi؟</a>
+            </div>
+            
+            <a href="#contact" class="bg-[#0A2540] text-white px-6 py-2 rounded-lg font-bold hover:bg-blue-900 transition shadow-md shadow-blue-900/10">تواصل معنا</a>
+        </div>
+    </nav>
+
+    <!-- القسم الرئيسي (Hero Section) -->
+    <header id="home" class="pt-40 pb-20 px-6 relative bg-white">
+        <div class="absolute top-20 left-1/4 w-96 h-96 bg-blue-100/50 rounded-full blur-3xl"></div>
+        
+        <div class="container mx-auto flex flex-col items-center text-center relative z-10">
+            <div class="mb-10 fade-in flex flex-col items-center">
+                <img src="images/Logo.png" alt="EnVi Logo" class="w-[280px] md:w-[340px] h-auto object-contain mb-8 remove-bg logo-shadow">
+            </div>
+
+            <div class="max-w-3xl fade-in">
+                <span class="inline-block bg-blue-50 text-blue-700 text-sm font-bold px-4 py-1.5 rounded-full mb-6">شريكك التقني في رحلة التحول الرقمي</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-[#0A2540] mb-6 leading-snug">
+                    نبني حلولًا برمجية تدفع <br>
+                    <span class="text-gradient">أعمالك إلى الأمام</span>
+                </h2>
+                <p class="text-lg text-slate-500 mb-10 leading-relaxed max-w-2xl mx-auto">
+                    من الفكرة الأولى وحتى إطلاق المشروع، نعمل معك في كل خطوة لنحوّل احتياجاتك إلى حلول تقنية فعّالة تساعدك على النمو وتحقيق أهدافك.
+                </p>
+                <div class="flex flex-wrap gap-4 justify-center">
+                    <a href="#services" class="bg-[#0A2540] text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-900 transition text-lg shadow-lg shadow-blue-900/20">اكتشف خدماتنا</a>
+                    <a href="#contact" class="border border-slate-300 text-[#0A2540] px-8 py-3 rounded-lg font-bold hover:bg-slate-50 transition text-lg">ابدأ رحلتك الرقمية</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- قسم من نحن (Intro) -->
+    <section class="py-20 px-6 bg-slate-50 border-y border-slate-100">
+        <div class="container mx-auto max-w-4xl text-center">
+            <h2 class="text-3xl font-extrabold text-[#0A2540] mb-6">لسنا مجرد شركة تطوير برمجيات…</h2>
+            <p class="text-lg text-slate-600 leading-loose">
+                في <span class="font-bold text-[#0A2540]">Envi للحلول البرمجية</span> نؤمن أن نجاح أي مشروع يبدأ بفهم احتياجات العميل قبل كتابة أول سطر برمجي. لذلك نرافقك في جميع مراحل المشروع، بدءًا من تحليل فكرتك، مرورًا بالتخطيط والتصميم والتطوير، وصولًا إلى الاختبار والإطلاق والدعم المستمر.
+            </p>
+        </div>
+    </section>
+
+    <!-- قسم كيف نعمل (How We Work) -->
+    <section id="work" class="py-24 px-6 bg-white">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-blue-600 font-bold tracking-wide">منهجية العمل</span>
+                <h2 class="text-4xl font-extrabold text-[#0A2540] mt-2">كيف نعمل؟</h2>
+                <p class="text-slate-500 mt-4 max-w-2xl mx-auto">نتبع منهجية واضحة ومدروسة لضمان تسليم منتج يلبي توقعاتك ويتجاوزها.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- خطوة 1 -->
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 relative">
+                    <span class="absolute top-4 left-4 text-5xl font-black text-slate-200">01</span>
+                    <div class="relative z-10">
+                        <h3 class="text-xl font-bold text-[#0A2540] mb-3 mt-4">تحليل احتياجاتك</h3>
+                        <p class="text-slate-500 leading-relaxed text-sm">نبدأ بالاستماع إلى فكرتك وفهم طبيعة عملك وأهدافك والتحديات التي تواجهها، ثم نحولها إلى متطلبات واضحة وخطة عمل مدروسة.</p>
+                    </div>
+                </div>
+                <!-- خطوة 2 -->
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 relative">
+                    <span class="absolute top-4 left-4 text-5xl font-black text-slate-200">02</span>
+                    <div class="relative z-10">
+                        <h3 class="text-xl font-bold text-[#0A2540] mb-3 mt-4">التخطيط وتصميم الحل</h3>
+                        <p class="text-slate-500 leading-relaxed text-sm">نصمم هيكل النظام وتجربة المستخدم وقاعدة البيانات بما يضمن سهولة الاستخدام وقابلية التوسع مستقبلًا.</p>
+                    </div>
+                </div>
+                <!-- خطوة 3 -->
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 relative">
+                    <span class="absolute top-4 left-4 text-5xl font-black text-slate-200">03</span>
+                    <div class="relative z-10">
+                        <h3 class="text-xl font-bold text-[#0A2540] mb-3 mt-4">التطوير</h3>
+                        <p class="text-slate-500 leading-relaxed text-sm">يقوم فريقنا ببناء النظام باستخدام أحدث التقنيات البرمجية مع التركيز على الأداء، والأمان، وجودة الكود، لضمان منتج موثوق وقابل للنمو.</p>
+                    </div>
+                </div>
+                <!-- خطوة 4 -->
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 relative">
+                    <span class="absolute top-4 left-4 text-5xl font-black text-slate-200">04</span>
+                    <div class="relative z-10">
+                        <h3 class="text-xl font-bold text-[#0A2540] mb-3 mt-4">الاختبار وضمان الجودة</h3>
+                        <p class="text-slate-500 leading-relaxed text-sm">قبل تسليم أي مشروع، نجري اختبارات شاملة للتأكد من أن جميع الوظائف تعمل بكفاءة وأن النظام يقدم أفضل تجربة ممكنة للمستخدم.</p>
+                    </div>
+                </div>
+                <!-- خطوة 5 -->
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 relative">
+                    <span class="absolute top-4 left-4 text-5xl font-black text-slate-200">05</span>
+                    <div class="relative z-10">
+                        <h3 class="text-xl font-bold text-[#0A2540] mb-3 mt-4">الإطلاق</h3>
+                        <p class="text-slate-500 leading-relaxed text-sm">نساعدك في نشر النظام وتشغيله وتهيئة بيئة العمل لضمان انطلاق مشروعك بأفضل صورة.</p>
+                    </div>
+                </div>
+                <!-- خطوة 6 -->
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 relative">
+                    <span class="absolute top-4 left-4 text-5xl font-black text-slate-200">06</span>
+                    <div class="relative z-10">
+                        <h3 class="text-xl font-bold text-[#0A2540] mb-3 mt-4">الدعم والتطوير المستمر</h3>
+                        <p class="text-slate-500 leading-relaxed text-sm">لا تنتهي علاقتنا مع العميل عند التسليم، بل نقدم الدعم الفني والصيانة والتحديثات، ونساعدك على تطوير النظام مع نمو أعمالك.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم خدماتنا (Services) -->
+    <section id="services" class="py-24 px-6 bg-slate-50 border-y border-slate-100">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-blue-600 font-bold tracking-wide">خدماتنا</span>
+                <h2 class="text-4xl font-extrabold text-[#0A2540] mt-2">حلول تقنية متكاملة</h2>
+                <p class="text-slate-500 mt-4 max-w-2xl mx-auto">نقدم باقة شاملة من الخدمات المصممة لتلبية احتياجات أعمالك المختلفة.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- خدمة 1 -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition group">
+                    <div class="text-blue-600 mb-6 group-hover:scale-110 transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h12M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m-9 3h10.5" /></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#0A2540] mb-3">تطوير الأنظمة الإدارية المخصصة</h3>
+                    <p class="text-slate-500 leading-relaxed text-sm">نبني أنظمة ERP وإدارية متكاملة مصممة خصيصاً لتلبية احتياجات مؤسستك وتبسيط سير عملك.</p>
+                </div>
+                <!-- خدمة 2 -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition group">
+                    <div class="text-blue-600 mb-6 group-hover:scale-110 transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25M6.75 17.25L1.5 12l5.25-5.25M14.25 4.5l-4.5 15" /></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#0A2540] mb-3">تصميم وتطوير مواقع الويب الاحترافية</h3>
+                    <p class="text-slate-500 leading-relaxed text-sm">صناعة مواقع إنترنت سريعة، آمنة، ومتجاوبة تعكس هوية علامتك التجارية وتوفر تجربة مستخدم استثنائية.</p>
+                </div>
+                <!-- خدمة 3 -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition group">
+                    <div class="text-blue-600 mb-6 group-hover:scale-110 transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" /></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#0A2540] mb-3">تطوير تطبيقات الويب</h3>
+                    <p class="text-slate-500 leading-relaxed text-sm">بناء تطبيقات ويب متقدمة تعمل عبر المتصفحات بكفاءة عالية، تجمع بين الوظيفية والمرونة وسهولة الوصول.</p>
+                </div>
+                <!-- خدمة 4 -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition group">
+                    <div class="text-blue-600 mb-6 group-hover:scale-110 transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.29898 3.156a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" /></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#0A2540] mb-3">أتمتة العمليات والإجراءات</h3>
+                    <p class="text-slate-500 leading-relaxed text-sm">تحويل المهام اليدوية المتكررة إلى عمليات آلية توفّر الوقت، تقلل الأخطاء، وتعزز الإنتاجية.</p>
+                </div>
+                <!-- خدمة 5 -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition group">
+                    <div class="text-blue-600 mb-6 group-hover:scale-110 transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#0A2540] mb-3">تصميم قواعد البيانات وربط الأنظمة</h3>
+                    <p class="text-slate-500 leading-relaxed text-sm">هيكلة قواعد البيانات وربط الأنظمة المختلفة لضمان تدفق المعلومات بسلاسة وموثوقية.</p>
+                </div>
+                <!-- خدمة 6 -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition group">
+                    <div class="text-blue-600 mb-6 group-hover:scale-110 transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" /></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#0A2540] mb-3">تطوير حلول خاصة تلائم طبيعة كل نشاط</h3>
+                    <p class="text-slate-500 leading-relaxed text-sm">نبتكر حلولاً برمجية غير تقليدية مصممة من الصفر لتلبي متطلبات فريدة لا تغطيها الأنظمة الجاهزة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم منتجاتنا (Products) - تمت إعادته -->
+    <section id="products" class="py-24 px-6 bg-white">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-blue-600 font-bold tracking-wide">منتجاتنا</span>
+                <h2 class="text-4xl font-extrabold text-[#0A2540] mt-2">حلول جاهزة تعمل فوراً</h2>
+                <p class="text-slate-500 mt-4 max-w-2xl mx-auto">نقدم أنظمة برمجية جاهزة تم اختبارها وتطويرها بأعلى معايير الجودة لتلبية احتياجات قطاعات الأعمال المختلفة.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+                
+                <!-- المنتج الأول: ERPSchool (متاح) -->
+                <div class="bg-slate-50 p-8 rounded-2xl border-2 border-blue-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition group relative overflow-hidden">
+                    <span class="absolute top-4 left-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">متاح الآن</span>
+                    <div class="text-blue-600 mb-6 group-hover:scale-110 transition mt-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" /></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-[#0A2540] mb-3">نظام إدارة المدارس <span class="text-blue-600">ERPSchool</span></h3>
+                    <p class="text-slate-500 leading-relaxed mb-6">نظام متكامل لإدارة كافة شؤون المدارس، من تسجيل الطلاب والشؤون المالية إلى إدارة الموظفين والدرجات والجداول، مصمم لتسهيل العمليات الإدارية ورفع كفاءة العمل.</p>
+                    <a href="#contact" class="bg-[#0A2540] text-white px-6 py-2 rounded-lg font-bold hover:bg-blue-900 transition inline-block text-sm">اطلب النظام الآن</a>
+                </div>
+
+                <!-- المنتج الثاني: قيد التطوير -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 border-dashed flex flex-col items-center justify-center text-center opacity-70 min-h-[300px]">
+                    <div class="text-slate-400 mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-500 mb-3">منتجات قيد التطوير</h3>
+                    <p class="text-slate-400 leading-relaxed mb-4 text-sm">نعمل حالياً على ابتكار حلول برمجية جديدة في مجالات متعددة. ترقبونا قريباً.</p>
+                    <span class="bg-slate-200 text-slate-500 text-xs font-bold px-4 py-1 rounded-full">قريباً</span>
+                </div>
+
+                <!-- المنتج الثالث: قيد التطوير -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 border-dashed flex flex-col items-center justify-center text-center opacity-70 min-h-[300px]">
+                    <div class="text-slate-400 mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" /></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-500 mb-3">حلول مؤسسية جديدة</h3>
+                    <p class="text-slate-400 leading-relaxed mb-4 text-sm">نعمل على تطوير أنظمة إدارة موارد المؤسسات (ERP) لتسهيل إدارة الأعمال ورفع كفاءة الإنتاجية. قيد التجهيز.</p>
+                    <span class="bg-slate-200 text-slate-500 text-xs font-bold px-4 py-1 rounded-full">قريباً</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم لماذا تختار Envi (Why Us) -->
+    <section id="why" class="py-24 px-6 bg-slate-50 border-y border-slate-100">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-blue-600 font-bold tracking-wide">لماذا تختار Envi؟</span>
+                <h2 class="text-4xl font-extrabold text-[#0A2540] mt-2">لأننا لا نقدم برنامجًا جاهزًا للجميع</h2>
+                <p class="text-slate-500 mt-4 max-w-2xl mx-auto">بل نصمم حلولًا تناسب احتياجاتك الفعلية ونرافقك لتحقيق النجاح المستدام.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="flex items-start gap-4 bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
+                    <span class="text-blue-600 mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+                    <div>
+                        <h3 class="font-bold text-[#0A2540] mb-1">تحليل دقيق للاحتياجات</h3>
+                        <p class="text-slate-500 text-sm">نحلل احتياجات مشروعك بدقة لنضمن أن الحل المطروح يلامس مشكلتك الحقيقية.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
+                    <span class="text-blue-600 mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+                    <div>
+                        <h3 class="font-bold text-[#0A2540] mb-1">حلول قابلة للتوسع</h3>
+                        <p class="text-slate-500 text-sm">نصمم بنية برمجية مرقة تنمو مع نمو أعمالك دون الحاجة لإعادة بناء النظام من الصفر.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
+                    <span class="text-blue-600 mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+                    <div>
+                        <h3 class="font-bold text-[#0A2540] mb-1">تقنيات حديثة وآمنة</h3>
+                        <p class="text-slate-500 text-sm">نستخدم أحدث الأطر البرمجية ونطبق معايير الأمان السيبراني لحماية بياناتك.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
+                    <span class="text-blue-600 mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+                    <div>
+                        <h3 class="font-bold text-[#0A2540] mb-1">الالتزام بالجودة والمواعيد</h3>
+                        <p class="text-slate-500 text-sm">نلتزم بمعايير الجودة العالمية ونسلم المشاريع في الأوقات المتفق عليها دون تأخير.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
+                    <span class="text-blue-600 mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+                    <div>
+                        <h3 class="font-bold text-[#0A2540] mb-1">دعم فني مستمر</h3>
+                        <p class="text-slate-500 text-sm">نوفر دعماً فنياً وصيانة دورية بعد الإطلاق لضمان استقرار عملك على المدى الطويل.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
+                    <span class="text-blue-600 mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+                    <div>
+                        <h3 class="font-bold text-[#0A2540] mb-1">علاقة طويلة الأمد</h3>
+                        <p class="text-slate-500 text-sm">نركز على بناء شراكات تقنية ناجحة مستمرة، وليس مجرد علاقة عميل لمرة واحدة.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الرؤية والرسالة (Vision & Mission) -->
+    <section class="py-24 px-6 bg-white">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl">
+            <div class="bg-slate-50 p-10 rounded-2xl shadow-sm border-t-4 border-blue-600 text-center">
+                <div class="inline-block p-4 bg-blue-100 rounded-full mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                </div>
+                <h3 class="text-2xl font-bold text-[#0A2540] mb-4">رؤيتنا</h3>
+                <p class="text-slate-600 leading-relaxed">أن نكون الشريك التقني الأول للشركات والمؤسسات التي تسعى إلى تطوير أعمالها من خلال حلول برمجية مبتكرة وموثوقة.</p>
+            </div>
+            <div class="bg-slate-50 p-10 rounded-2xl shadow-sm border-t-4 border-slate-400 text-center">
+                <div class="inline-block p-4 bg-slate-100 rounded-full mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h12M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m-9 3h10.5" /></svg>
+                </div>
+                <h3 class="text-2xl font-bold text-[#0A2540] mb-4">رسالتنا</h3>
+                <p class="text-slate-600 leading-relaxed">تقديم حلول برمجية احترافية تجمع بين الجودة، والابتكار، وسهولة الاستخدام، بما يساعد عملاءنا على تحسين الأداء وتحقيق النمو المستدام.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم التواصل (Contact) -->
+    <section id="contact" class="py-24 px-6 bg-slate-50 border-t border-slate-100">
+        <div class="container mx-auto text-center max-w-2xl">
+            <h2 class="text-4xl font-extrabold text-[#0A2540] mb-4">هل لديك فكرة؟</h2>
+            <p class="text-slate-500 mb-8 text-lg leading-relaxed">
+                سواء كنت ترغب في إنشاء نظام إداري، أو موقع إلكتروني، أو منصة رقمية، فإن فريق <span class="font-bold text-[#0A2540]">Envi</span> جاهز لتحويل فكرتك إلى منتج احترافي يخدم أعمالك اليوم ويواكب تطورها في المستقبل.
+                <br>
+                <span class="text-[#0A2540] font-semibold mt-4 block">ابدأ رحلتك الرقمية معنا… وسنتولى تحويل فكرتك إلى واقع.</span>
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-10">
+                <a href="mailto:info@envi.ly" class="bg-[#0A2540] text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-900 transition shadow-lg shadow-blue-900/20 inline-flex items-center gap-2 w-full sm:w-auto justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    راسلنا عبر البريد
+                </a>
+                
+                <a href="https://wa.me/218915897498" target="_blank" class="bg-green-500 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-green-600 transition shadow-lg shadow-green-500/20 inline-flex items-center gap-2 w-full sm:w-auto justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                    تواصل عبر واتساب
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- التذييل (Footer) -->
+    <footer class="bg-white py-8 px-6 border-t border-slate-200">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center gap-3 mb-4 md:mb-0">
+                <img src="images/Logo.png" alt="EnVi Logo" class="w-24 h-8 object-contain remove-bg">
+            </div>
+            <p class="text-slate-400 text-sm">&copy; 2026 EnVi Software Solutions. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <!-- زر واتساب العائم (Floating WhatsApp Button) -->
+    <a href="https://wa.me/218915897498" target="_blank" class="fixed bottom-6 left-6 z-50 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-transform hover:scale-110 whatsapp-pulse">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+        </svg>
+    </a>
+
+</body>
+</html>
