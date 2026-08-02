@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ERPSchool - نسخة العرض التجريبي</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Cairo',Arial,sans-serif;background:#f3f4f6;color:#111827;direction:rtl}
+    .layout{display:flex;min-height:100vh}
+    .side{position:fixed;top:0;right:0;bottom:0;width:250px;background:#fff;border-left:1px solid #e5e7eb;display:flex;flex-direction:column;z-index:50;transition:transform .3s}
+    .brand{display:flex;align-items:center;gap:12px;padding:18px 16px;border-bottom:1px solid #f3f4f6}
+    .brand-mark{width:38px;height:38px;border-radius:10px;background:#1d4ed8;color:#fff;display:grid;place-items:center;font-size:18px;flex-shrink:0}
+    .brand strong{display:block;font-size:17px;color:#111827}
+    .brand span{display:block;font-size:12px;color:#64748b}
+    .nav{flex:1;padding:12px;overflow-y:auto;display:grid;gap:4px}
+    .nav button{width:100%;border:none;border-radius:8px;padding:10px 14px;cursor:pointer;text-align:right;background:transparent;color:#475569;font-size:14px;font-weight:500;display:flex;align-items:center;gap:10px;transition:all .15s}
+    .nav button:hover{background:#f0f4ff;color:#1d4ed8}
+    .nav button.active{background:#eaf1ff;color:#1d4ed8;font-weight:700}
+    .nav button i{width:20px;text-align:center;font-size:15px}
+    .side-foot{padding:14px 16px;border-top:1px solid #f3f4f6;font-size:11px;color:#94a3b8;text-align:center}
+    .main{margin-right:250px;flex:1;min-height:100vh;display:flex;flex-direction:column}
+    .top{height:72px;background:#fff;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;justify-content:space-between;padding:0 24px;flex-shrink:0;gap:12px}
+    .top h1{font-size:20px;color:#111827}
+    .top p{font-size:13px;color:#64748b;margin-top:1px}
+    .top-actions{display:flex;gap:8px}
+    .screen{flex:1;padding:24px;display:grid;gap:16px;overflow-y:auto}
+    button,input,select,textarea{font-family:inherit;font-size:inherit}
+    .icon-btn{width:36px;height:36px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;cursor:pointer;display:inline-grid;place-items:center;color:#475569;transition:all .15s}
+    .icon-btn:hover{background:#f3f4f6;color:#111827}
+    .icon-btn.danger{color:#dc2626;border-color:#fecaca}
+    .icon-btn.danger:hover{background:#fef2f2}
+    .icon-btn.success{color:#16a34a;border-color:#bbf7d0}
+    .icon-btn.success:hover{background:#f0fdf4}
+    .btn{border:none;border-radius:8px;padding:9px 16px;cursor:pointer;font-weight:600;font-size:13px;display:inline-flex;align-items:center;gap:6px;transition:all .15s}
+    .btn.primary{background:#1d4ed8;color:#fff}.btn.primary:hover{background:#1e40af}
+    .btn.success{background:#16a34a;color:#fff}.btn.success:hover{background:#15803d}
+    .btn.danger{background:#dc2626;color:#fff}.btn.danger:hover{background:#b91c1c}
+    .search{display:flex;align-items:center;gap:8px;min-width:220px;border:1px solid #d1d5db;border-radius:8px;padding:0 12px;background:#fff}
+    .search i{color:#94a3b8;font-size:14px}
+    .search input{border:none;outline:none;padding:9px 0;flex:1;background:transparent;font-size:13px}
+    .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+    .stat{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:16px;display:flex;align-items:center;gap:14px}
+    .stat i{width:42px;height:42px;border-radius:10px;background:#eaf1ff;color:#1d4ed8;display:grid;place-items:center;font-size:18px}
+    .stat div{display:flex;flex-direction:column}
+    .stat span{font-size:12px;color:#64748b}
+    .stat strong{font-size:20px;color:#111827;margin-top:2px}
+    .panel{background:#fff;border:1px solid #e5e7eb;border-radius:10px;overflow:hidden}
+    .panel-head{display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:1px solid #f3f4f6;flex-wrap:wrap;gap:10px}
+    .panel-head h2{font-size:16px;color:#111827}
+    .toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    .table-wrap{overflow-x:auto}
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:11px 14px;border-bottom:1px solid #f3f4f6;text-align:right;font-size:13px;white-space:nowrap}
+    th{background:#f8fafc;color:#475569;font-weight:700;font-size:12px}
+    tr:hover td{background:#fafbfc}
+    tr:last-child td{border-bottom:0}
+    .badge{display:inline-flex;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700}
+    .badge.ok{background:#dcfce7;color:#166534}
+    .badge.bad{background:#fee2e2;color:#991b1b}
+    .badge.warn{background:#fef9c3;color:#854d0e}
+    .badge.info{background:#e0e7ff;color:#3730a3}
+    .badge.gray{background:#f1f5f9;color:#475569}
+    .muted{color:#64748b;font-size:12px}
+    .detail{display:grid;gap:16px}
+    .kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+    .kv div{display:flex;flex-direction:column;gap:2px}
+    .kv span{font-size:12px;color:#64748b}
+    .kv strong{font-size:14px;color:#111827}
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.4);backdrop-filter:blur(2px);z-index:100;display:none;place-items:center;padding:16px}
+    .modal.show{display:grid}
+    .modal-card{background:#fff;border-radius:12px;width:100%;max-width:560px;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.15)}
+    .modal-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid #f3f4f6}
+    .modal-head h2{font-size:17px;color:#111827}
+    .modal-body{padding:20px;overflow-y:auto;flex:1}
+    .modal-actions{display:flex;gap:10px;justify-content:flex-start;padding:14px 20px;border-top:1px solid #f3f4f6}
+    .form{display:grid;gap:14px}
+    .field{display:flex;flex-direction:column;gap:5px}
+    .field label{font-size:13px;font-weight:600;color:#374151}
+    .field input,.field select,.field textarea{border:1px solid #d1d5db;border-radius:8px;padding:9px 12px;outline:none;transition:border-color .15s;font-size:14px}
+    .field input:focus,.field select:focus,.field textarea:focus{border-color:#1d4ed8;box-shadow:0 0 0 3px rgba(29,78,216,.08)}
+    .field textarea{resize:vertical;min-height:60px}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .toast{position:fixed;left:20px;bottom:20px;background:#111827;color:#fff;border-radius:10px;padding:12px 20px;font-size:14px;font-weight:500;z-index:200;display:none;box-shadow:0 8px 30px rgba(0,0,0,.2)}
+    .toast.show{display:flex;align-items:center;gap:8px}
+    .toast.error{background:#991b1b}
+    .mobile-only{display:none}
+    @media(max-width:780px){
+      .side{position:fixed;transform:translateX(100%);width:260px}
+      .side.open{transform:translateX(0);box-shadow:-10px 0 40px rgba(0,0,0,.1)}
+      .mobile-only{display:inline-grid}
+      .main{margin-right:0}
+      .top{height:auto;padding:14px 16px;flex-wrap:wrap}
+      .screen{padding:14px}
+      .stats{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+      .row{grid-template-columns:1fr}
+      .modal-card{max-width:100%}
+      .panel-head{flex-direction:column;align-items:flex-start}
+      .toolbar{width:100%}
+      .search{min-width:0;flex:1}
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="side" id="side">
+      <div class="brand">
+        <div class="brand-mark"><i class="fas fa-school"></i></div>
+        <div>
+          <strong>ERPSchool</strong>
+          <span>إدارة المدرسة</span>
+        </div>
+      </div>
+      <nav class="nav" id="nav"></nav>
+      <div class="side-foot">ERPSchool v1.0</div>
+    </aside>
+
+    <main class="main">
+      <header class="top">
+        <button class="icon-btn mobile-only" data-action="ui.toggleSide()" title="القائمة"><i class="fas fa-bars"></i></button>
+        <div>
+          <h1 id="page-title">لوحة التحكم</h1>
+          <p id="page-subtitle">نظرة سريعة على المدرسة</p>
+        </div>
+        <div class="top-actions">
+          <button class="icon-btn" data-action="app.refresh()" title="تحديث"><i class="fas fa-rotate"></i></button>
+          <button class="icon-btn" data-action="window.print()" title="طباعة"><i class="fas fa-print"></i></button>
+          <button class="icon-btn" data-action="actions.logout()" title="تسجيل الخروج" style="color:#ef4444"><i class="fas fa-right-from-bracket"></i></button>
+        </div>
+      </header>
+      <section id="app" class="screen"></section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2 id="modal-title"></h2>
+        <button class="icon-btn" data-action="ui.closeModal()" title="إغلاق"><i class="fas fa-xmark"></i></button>
+      </div>
+      <div id="modal-body" class="modal-body"></div>
+      <div id="modal-actions" class="modal-actions"></div>
+    </div>
+  </div>
+
+<script>
+// =====================================================================
+// 1. قاعدة البيانات الوهمية (Mock Database) - بديل الـ Backend
+// =====================================================================
+const mockDB = {
+  me: { id: 1, username: "admin", fullName: "مدير النظام", role: { name: "ADMIN" } },
+  roles: [{id: 1, name: "ADMIN"}, {id: 2, name: "REGISTRAR"}],
+  students: [
+    { id: 1, studentCode: "ST-1001", firstName: "محمد", lastName: "علي", fullName: "محمد علي حسن", nationalId: "1199012", birthDate: "2010-05-10", gender: "Male", phone: "0912345678", email: "m@test.com", address: "طرابلس", residence: "طرابلس", guardianName: "علي حسن", guardianPhone: "0912345678", totalFees: 1000, section: { id: 1, name: "شعبة أ", schoolClass: { id: 1, name: "الصف الأول" } }, academicYear: { id: 1, name: "2023-2024" }, status: true },
+    { id: 2, studentCode: "ST-1002", firstName: "سارة", lastName: "أحمد", fullName: "سارة أحمد محمد", nationalId: "1201234", birthDate: "2011-02-15", gender: "Female", phone: "0987654321", email: "s@test.com", address: "بنغازي", residence: "بنغازي", guardianName: "أحمد محمد", guardianPhone: "0987654321", totalFees: 1000, section: { id: 2, name: "شعبة ب", schoolClass: { id: 1, name: "الصف الأول" } }, academicYear: { id: 1, name: "2023-2024" }, status: true }
+  ],
+  teachers: [
+    { id: 1, teacherCode: "TC-2001", firstName: "خالد", lastName: "المبروك", fullName: "خالد المبروك", nationalId: "2019234", identityNumber: "2019234", phone: "0911111111", salary: 5000, address: "طرابلس", scheduleNotes: "", subjects: [{ id: 1, name: "رياضيات" }], specialization: "رياضيات" }
+  ],
+  years: [
+    { id: 1, name: "2023-2024", startDate: "2023-09-01", endDate: "2024-06-01", currentYear: true, status: "OPEN" }
+  ],
+  classes: [
+    { id: 1, name: "الصف الأول", description: "المرحلة الابتدائية" },
+    { id: 2, name: "الصف الثاني", description: "المرحلة الابتدائية" }
+  ],
+  sections: [
+    { id: 1, name: "شعبة أ", schoolClass: { id: 1, name: "الصف الأول" } },
+    { id: 2, name: "شعبة ب", schoolClass: { id: 1, name: "الصف الأول" } },
+    { id: 3, name: "شعبة أ", schoolClass: { id: 2, name: "الصف الثاني" } }
+  ],
+  subjects: [
+    { id: 1, name: "رياضيات", code: "MATH", creditHours: 4, description: "رياضيات عامة" },
+    { id: 2, name: "علوم", code: "SCI", creditHours: 3, description: "علوم عامة" }
+  ],
+  fees: [
+    { id: 1, schoolClass: { id: 1, name: "الصف الأول" }, academicYear: { id: 1, name: "2023-2024" }, amount: 1000, type: "رسوم دراسية", status: "UNPAID", notes: "" }
+  ],
+  installments: [
+    { id: 1, student: { id: 1, fullName: "محمد علي حسن" }, title: "القسط الأول", amount: 1000, paidAmount: 500, remainingAmount: 500, dueDate: "2023-10-01", status: "PARTIAL", notes: "" }
+  ],
+  payments: [
+    { id: 1, student: { id: 1, fullName: "محمد علي حسن" }, installment: { id: 1, title: "القسط الأول" }, amount: 500, paymentDate: "2023-10-05", paymentMethod: "نقدي", receiptNumber: "R-1001", notes: "دفعة أولى" }
+  ],
+  exams: [
+    { id: 1, name: "اختبار الفصل الأول", type: "FIRST_TERM", academicYear: { id: 1, name: "2023-2024" } }
+  ],
+  grades: [
+    { id: 1, student: { id: 1, fullName: "محمد علي حسن" }, subject: { id: 1, name: "رياضيات" }, exam: { id: 1, name: "اختبار الفصل الأول" }, score: 85, examType: "اختبار الفصل الأول" }
+  ],
+  attendance: [
+    { id: 1, student: { id: 1, fullName: "محمد علي حسن", section: { id: 1, schoolClass: { id: 1, name: "الصف الأول" }, name: "شعبة أ" } }, date: "2023-10-15", status: "PRESENT", notes: "" }
+  ],
+  users: [
+    { id: 1, username: "admin", fullName: "مدير النظام", role: { id: 1, name: "ADMIN" }, enabled: true }
+  ],
+  classSubjects: [
+    { id: 1, schoolClass: { id: 1, name: "الصف الأول" }, subject: { id: 1, name: "رياضيات" }, teacher: { id: 1, fullName: "خالد المبروك" } }
+  ]
+};
+
+// خريطة المسارات لتبسيط الطلبات الوهمية
+const pathMap = {
+  '/students': 'students',
+  '/teachers': 'teachers',
+  '/academic-years': 'years',
+  '/classes': 'classes',
+  '/sections': 'sections',
+  '/subjects': 'subjects',
+  '/fees': 'fees',
+  '/installments': 'installments',
+  '/payments': 'payments',
+  '/exams': 'exams',
+  '/grades': 'grades',
+  '/attendance': 'attendance',
+  '/users': 'users',
+  '/class-subjects': 'classSubjects'
+};
+
+// =====================================================================
+// 2. كائن API الوهمي (Mock API) - يعترض الطلبات ويرد بالبيانات
+// =====================================================================
+const api = {
+  get(path) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        if (path === "/users/me") return resolve(mockDB.me);
+        const key = pathMap[path];
+        resolve(mockDB[key] ? JSON.parse(JSON.stringify(mockDB[key])) : []);
+      }, 200); // محاكاة تأخير الشبكة
+    });
+  },
+  post(path, body) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        const key = pathMap[path];
+        if (!mockDB[key]) mockDB[key] = [];
+        const newItem = { ...JSON.parse(JSON.stringify(body)), id: Math.floor(Math.random() * 10000) + 100 };
+        
+        // ربط العلاقات (Relations) للبيانات الجديدة لعرضها بشكل صحيح
+        if (key === 'students' && newItem.section) {
+          newItem.section = mockDB.sections.find(s => s.id === newItem.section.id) || newItem.section;
+          newItem.academicYear = mockDB.years.find(y => y.id === newItem.academicYear?.id) || newItem.academicYear;
+        }
+        if (key === 'payments' && newItem.studentId) {
+           newItem.student = mockDB.students.find(s => s.id === newItem.studentId);
+           if (newItem.installmentId) {
+             newItem.installment = mockDB.installments.find(i => i.id === newItem.installmentId);
+           }
+        }
+        if (key === 'installments' && newItem.student) {
+           const st = mockDB.students.find(s => s.id === newItem.student.id);
+           if (st) newItem.student = { id: st.id, fullName: st.fullName };
+        }
+        if (key === 'grades' && newItem.studentId) {
+           newItem.student = mockDB.students.find(s => s.id === newItem.studentId);
+           newItem.subject = mockDB.subjects.find(s => s.id === newItem.subjectId);
+           newItem.exam = mockDB.exams.find(e => e.id === newItem.examId);
+        }
+        if (key === 'class-subjects' && newItem.schoolClass) {
+           newItem.schoolClass = mockDB.classes.find(c => c.id === newItem.schoolClass.id);
+           newItem.subject = mockDB.subjects.find(s => s.id === newItem.subject.id);
+           if (newItem.teacher) newItem.teacher = mockDB.teachers.find(t => t.id === newItem.teacher.id);
+        }
+        if (key === 'fees' && newItem.schoolClass) {
+           newItem.schoolClass = mockDB.classes.find(c => c.id === newItem.schoolClass.id);
+           newItem.academicYear = mockDB.years.find(y => y.id === newItem.academicYear.id);
+        }
+        if (key === 'attendance' && newItem.studentId) {
+           const st = mockDB.students.find(s => s.id === newItem.studentId);
+           if (st) newItem.student = { id: st.id, fullName: st.fullName, section: st.section };
+        }
+        if (key === 'exams' && newItem.academicYear) {
+           newItem.academicYear = mockDB.years.find(y => y.id === newItem.academicYear.id);
+        }
+        
+        mockDB[key].push(newItem);
+        resolve(newItem);
+      }, 200);
+    });
+  },
+  put(path, body) {
+     return new Promise(resolve => {
+       setTimeout(() => {
+         const parts = path.split('/');
+         const key = pathMap['/' + parts[1]];
+         const id = Number(parts[2]);
+         if (mockDB[key]) {
+           const index = mockDB[key].findIndex(x => x.id === id);
+           if (index !== -1) {
+             let updated = { ...mockDB[key][index], ...body };
+             if (key === 'students') {
+               if (body.section) updated.section = mockDB.sections.find(s => s.id === body.section.id) || body.section;
+               if (body.academicYear) updated.academicYear = mockDB.years.find(y => y.id === body.academicYear.id) || body.academicYear;
+             }
+             mockDB[key][index] = updated;
+             resolve(updated);
+             return;
+           }
+         }
+         resolve(body);
+       }, 200);
+     });
+  },
+  del(path) {
+     return new Promise(resolve => {
+       setTimeout(() => {
+         const parts = path.split('/');
+         const key = pathMap['/' + parts[1]];
+         const id = Number(parts[2]);
+         if (mockDB[key]) {
+           mockDB[key] = mockDB[key].filter(x => x.id !== id);
+         }
+         resolve(null);
+       }, 200);
+     });
+  }
+};
+
+// =====================================================================
+// 3. كود النظام الأصلي (JavaScript) مع تعديلات بسيطة ليتوافق مع العرض
+// =====================================================================
+const state = {
+  page: "dashboard",
+  selectedStudentId: null,
+  query: "",
+  currentUser: null,
+  data: {
+    students: [], teachers: [], years: [], classes: [], sections: [], subjects: [],
+    fees: [], installments: [], payments: [], exams: [], grades: [], attendance: [],
+    users: [], classSubjects: []
+  }
+};
+
+const pages = [
+  ["dashboard", "لوحة التحكم", "نظرة مالية وإدارية", "fa-chart-line"],
+  ["students", "الطلاب", "إضافة ومتابعة الطلاب", "fa-user-graduate"],
+  ["fees", "الرسوم", "رسوم الصفوف والسنوات", "fa-file-invoice-dollar"],
+  ["installments", "الأقساط", "جدولة الأقساط والتحصيل", "fa-receipt"],
+  ["teachers", "المعلمون", "بيانات المعلمين والمواد", "fa-chalkboard-user"],
+  ["subjects", "المواد", "إدارة المواد الدراسية", "fa-book"],
+  ["classes", "الصفوف والشعب", "تنظيم الهيكل الدراسي", "fa-school"],
+  ["academicYears", "السنوات", "إدارة السنوات الدراسية", "fa-calendar-alt"],
+  ["attendance", "الحضور", "تسجيل ومتابعة الحضور", "fa-clipboard-list"],
+  ["grades", "الدرجات", "إدخال ومراجعة النتائج", "fa-clipboard-check"],
+  ["promotion", "نقل الطلاب", "نقل الناجحين إلى الصف القادم", "fa-arrow-up-right-dots"],
+  ["reports", "التقارير", "تصدير وطباعة", "fa-file-export"],
+  ["users", "المستخدمون", "إدارة المستخدمين والصلاحيات", "fa-users-cog"]
+];
+
+const $ = (id) => document.getElementById(id);
+const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[c]));
+const money = (v) => `${Number(v || 0).toLocaleString("ar-LY")} د.ل`;
+const today = () => new Date().toISOString().slice(0, 10);
+const byId = (items, id) => items.find((x) => String(x.id) === String(id));
+const nameOf = (x) => x ? (x.fullName || `${x.firstName || ""} ${x.lastName || ""}`.trim() || x.name || "بدون اسم") : "غير محدد";
+const splitName = (full) => {
+  const parts = full.trim().split(/\s+/).filter(Boolean);
+  return { firstName: parts.slice(0, Math.max(1, parts.length - 1)).join(" "), lastName: parts.slice(-1).join(" ") };
+};
+const studentClass = (s) => s?.section?.schoolClass?.name || "";
+const studentSection = (s) => s?.section?.name || "";
+const studentClassId = (s) => s?.section?.schoolClass?.id || "";
+const studentYearId = (s) => s?.academicYear?.id || "";
+const isAdmin = () => String(state.currentUser?.role?.name || "").toUpperCase() === "ADMIN";
+const classSubjectsFor = (classId) => state.data.classSubjects.filter((x) => String(x.schoolClass?.id) === String(classId));
+const subjectsForClass = (classId) => {
+  const linked = classSubjectsFor(classId).map((x) => x.subject).filter(Boolean);
+  return linked.length ? linked : state.data.subjects;
+};
+
+const ui = {
+  toast(message, type = "success") {
+    const box = $("toast");
+    box.textContent = message;
+    box.className = `toast show ${type}`;
+    clearTimeout(ui.toastTimer);
+    ui.toastTimer = setTimeout(() => (box.className = "toast"), 4200);
+  },
+  modal(title, body, actions) {
+    $("modal-title").textContent = title;
+    $("modal-body").innerHTML = body;
+    $("modal-actions").innerHTML = actions;
+    $("modal").classList.add("show");
+    $("modal").setAttribute("aria-hidden", "false");
+  },
+  closeModal() {
+    $("modal").classList.remove("show");
+    $("modal").setAttribute("aria-hidden", "true");
+  },
+  toggleSide() {
+    $("side").classList.toggle("open");
+  }
+};
+
+function selectOptions(items, selected, label = (x) => x.name) {
+  return items.map((x) => `<option value="${x.id}" ${String(x.id) === String(selected) ? "selected" : ""}>${esc(label(x))}</option>`).join("");
+}
+function button(label, iconName, action, type = "") {
+  return `<button type="button" class="btn ${type}" data-action="${esc(action)}"><i class="fas ${iconName}"></i>${label}</button>`;
+}
+function icon(iconName, action, title, type = "") {
+  return `<button type="button" class="icon-btn ${type}" data-action="${esc(action)}" title="${esc(title)}"><i class="fas ${iconName}"></i></button>`;
+}
+function panel(title, tools, content) {
+  return `<section class="panel"><div class="panel-head"><h2>${title}</h2><div class="toolbar">${tools || ""}</div></div>${content}</section>`;
+}
+function table(headers, rows, emptyText = "لا توجد بيانات") {
+  const head = headers.map((h) => `<th>${h}</th>`).join("");
+  const body = rows.length
+    ? rows.join("")
+    : `<tr><td colspan="${headers.length}" class="muted" style="text-align:center;padding:28px">${emptyText}</td></tr>`;
+  return `<div class="table-wrap"><table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>`;
+}
+function reportTable(headers, rows, emptyText = "لا توجد بيانات") {
+  const head = headers.map((h) => `<th>${h}</th>`).join("");
+  const body = rows || `<tr><td colspan="${headers.length}" style="text-align:center;padding:24px">${emptyText}</td></tr>`;
+  return `<table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
+}
+function searchBox(placeholder = "بحث") {
+  return `<div class="search-run">
+    <div class="search"><i class="fas fa-search"></i><input id="search_input" value="${esc(state.query)}" onkeydown="if(event.key==='Enter')app.searchFromBox()" placeholder="${placeholder}"></div>
+    <button type="button" class="btn" data-action="app.searchFromBox()"><i class="fas fa-search"></i>بحث</button>
+    ${state.query ? `<button type="button" class="btn" data-action="app.clearSearch()"><i class="fas fa-xmark"></i>مسح</button>` : ""}
+  </div>`;
+}
+function stat(label, value, iconName) {
+  return `<div class="stat"><i class="fas ${iconName}"></i><div><span>${label}</span><strong>${value}</strong></div></div>`;
+}
+
+function feeForClass(classId, yearId) {
+  let fee = state.data.fees.find((f) => String(f.schoolClass?.id) === String(classId) && String(f.academicYear?.id) === String(yearId));
+  if (!fee) fee = state.data.fees.find((f) => String(f.schoolClass?.id) === String(classId));
+  return Number(fee?.amount || 0);
+}
+function studentFinance(studentId) {
+  const installments   = state.data.installments.filter((i) => String(i.student?.id) === String(studentId));
+  const linkedPaid     = installments.reduce((sum, i) => sum + Number(i.paidAmount || 0), 0);
+  const generalPaid    = state.data.payments
+    .filter((p) => String(p.student?.id) === String(studentId) && !p.installment)
+    .reduce((sum, p) => sum + Number(p.amount || 0), 0);
+  const totalInstallments = installments.reduce((sum, i) => sum + Number(i.amount || 0), 0);
+  const student = byId(state.data.students, studentId);
+  const total =
+    totalInstallments > 0
+      ? totalInstallments
+      : Number(student?.totalFees) > 0
+      ? Number(student.totalFees)
+      : feeForClass(studentClassId(student), studentYearId(student));
+  const paid = linkedPaid + generalPaid;
+  return { total, paid, due: Math.max(total - paid, 0), installments };
+}
+function statusBadge(status) {
+  const map = {
+    PAID:    ["ok",   "مدفوع"],
+    PARTIAL: ["warn", "جزئي"],
+    OVERDUE: ["bad",  "متأخر"],
+    UNPAID:  ["gray", "غير مدفوع"],
+    PRESENT: ["ok",   "حاضر"],
+    ABSENT:  ["bad",  "غائب"],
+    LATE:    ["warn", "متأخر"],
+    EXCUSED: ["info", "معذر"]
+  };
+  const item = map[status] || map.UNPAID;
+  return `<span class="badge ${item[0]}">${item[1]}</span>`;
+}
+function gradeLabel(score) {
+  const v = Number(score || 0);
+  if (v >= 85) return "ممتاز";
+  if (v >= 75) return "جيد جداً";
+  if (v >= 65) return "جيد";
+  if (v >= 50) return "مقبول";
+  return "ضعيف";
+}
+function studentAverage(studentId) {
+  const grades = state.data.grades.filter((g) => String(g.student?.id) === String(studentId));
+  if (!grades.length) return null;
+  return grades.reduce((sum, g) => sum + Number(g.score || 0), 0) / grades.length;
+}
+function printDocument(title, body) {
+  const win = window.open("", "_blank", "width=820,height=900");
+  if (!win) { ui.toast("المتصفح منع نافذة الطباعة", "error"); return; }
+  win.document.write(`<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><title>${esc(title)}</title>
+    <style>
+      body{font-family:Arial,Tahoma,sans-serif;color:#111827;margin:0;padding:28px;background:#fff}
+      .paper{max-width:760px;margin:0 auto;border:1px solid #d1d5db;padding:24px}
+      .head{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #111827;padding-bottom:14px;margin-bottom:18px}
+      h1{font-size:22px;margin:0}.muted{color:#6b7280;font-size:13px}.row{display:flex;justify-content:space-between;border-bottom:1px solid #e5e7eb;padding:10px 0;gap:18px}
+      .amount{font-size:28px;font-weight:800;color:#166534}.sign{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:60px}.line{border-top:1px solid #111827;padding-top:8px;text-align:center}
+      table{width:100%;border-collapse:collapse;margin-top:12px}th,td{border:1px solid #d1d5db;padding:9px;text-align:right}th{background:#f3f4f6}
+      @media print{body{padding:0}.paper{border:0;max-width:none}button{display:none}}
+    </style></head><body>${body}<script>window.onload=function(){window.print()}<\/script></body></html>`);
+  win.document.close();
+}
+function receiptHtml(payment) {
+  const student = payment.student || byId(state.data.students, payment.student?.id);
+  return `<div class="paper">
+    <div class="head"><div><h1>إيصال قبض</h1><div class="muted">ERPSchool</div></div><div class="muted">رقم الإيصال: ${esc(payment.receiptNumber || payment.id || "")}<br>التاريخ: ${esc(payment.paymentDate || "")}</div></div>
+    <div class="row"><strong>استلمنا من</strong><span>${esc(nameOf(student))}</span></div>
+    <div class="row"><strong>وذلك عن</strong><span>${esc(payment.installment?.title || "دفعة رسوم")}</span></div>
+    <div class="row"><strong>طريقة الدفع</strong><span>${esc(payment.paymentMethod || "نقدي")}</span></div>
+    <div class="row"><strong>المبلغ</strong><span class="amount">${money(payment.amount)}</span></div>
+    <div class="row"><strong>ملاحظات</strong><span>${esc(payment.notes || "")}</span></div>
+    <div class="sign"><div class="line">المستلم</div><div class="line">ولي الأمر</div></div>
+  </div>`;
+}
+
+const app = {
+  async init() {
+    renderNav();
+    await app.refresh();
+  },
+  async refresh() {
+    try {
+      $("app").innerHTML = `<div class="muted" style="padding:40px;text-align:center">جاري تحميل البيانات...</div>`;
+      const [me, students, teachers, years, classes, sections, subjects, fees, installments, payments, exams, grades, attendance, classSubjects] =
+        await Promise.all([
+          api.get("/users/me").catch(() => null),
+          api.get("/students"),
+          api.get("/teachers"),
+          api.get("/academic-years"),
+          api.get("/classes"),
+          api.get("/sections"),
+          api.get("/subjects"),
+          api.get("/fees"),
+          api.get("/installments"),
+          api.get("/payments"),
+          api.get("/exams").catch(() => []),
+          api.get("/grades").catch(() => []),
+          api.get("/attendance").catch(() => []),
+          api.get("/class-subjects").catch(() => [])
+        ]);
+      state.currentUser = me;
+      const users = isAdmin() ? await api.get("/users").catch(() => []) : [];
+      state.data = { students, teachers, years, classes, sections, subjects, fees, installments, payments, exams, grades, attendance, users, classSubjects };
+      if (state.page === "users" && !isAdmin()) state.page = "dashboard";
+      render();
+    } catch (e) {
+      $("app").innerHTML = `<div class="panel" style="padding:24px;color:#b91c1c">${esc(e.message)}</div>`;
+      ui.toast(e.message, "error");
+    }
+  },
+  go(page, id) {
+    state.page = page;
+    state.selectedStudentId = id || null;
+    state.query = "";
+    renderNav();
+    render();
+    $("side").classList.remove("open");
+  },
+  search(value) { state.query = value; render(); },
+  searchFromBox() { state.query = $("search_input")?.value || ""; render(); },
+  clearSearch() { state.query = ""; render(); }
+};
+
+function renderNav() {
+  $("nav").innerHTML = pages
+    .filter(([id]) => id !== "users" || isAdmin())
+    .map(([id, label, , iconName]) =>
+      `<button type="button" class="${state.page === id ? "active" : ""}" data-action="app.go('${id}')"><i class="fas ${iconName}"></i>${label}</button>`
+    ).join("");
+}
+
+function render() {
+  const page = pages.find((p) => p[0] === state.page) || pages[0];
+  $("page-title").textContent = page[1];
+  $("page-subtitle").textContent = page[2];
+  const views = {
+    dashboard: viewDashboard, students: viewStudents, student: viewStudent, fees: viewFees,
+    installments: viewInstallments, teachers: viewTeachers, subjects: viewSubjects, classes: viewClasses,
+    academicYears: viewAcademicYears, attendance: viewAttendance, grades: viewGrades, reports: viewReports,
+    promotion: viewPromotion, users: viewUsers
+  };
+  $("app").innerHTML = (views[state.page] || viewDashboard)();
+}
+
+function viewDashboard() {
+  const finance  = state.data.students.map((s) => studentFinance(s.id));
+  const total    = finance.reduce((a, f) => a + f.total, 0);
+  const paid     = finance.reduce((a, f) => a + f.paid, 0);
+  const due      = Math.max(total - paid, 0);
+  const overdue  = state.data.installments.filter(
+    (i) => Number(i.remainingAmount ?? (i.amount - i.paidAmount)) > 0 && i.dueDate < today()
+  ).length;
+  const latestPayments = state.data.payments.slice().sort((a, b) => b.id - a.id).slice(0, 6).map(
+      (p) => `<tr><td>${esc(nameOf(p.student))}</td><td>${esc(p.installment?.title || "دفعة عامة")}</td><td>${money(p.amount)}</td><td>${esc(p.paymentDate || "")}</td></tr>`
+    );
+  return `<div class="grid stats">
+    ${stat("الطلاب", state.data.students.length, "fa-user-graduate")}
+    ${stat("المعلمون", state.data.teachers.length, "fa-chalkboard-user")}
+    ${stat("الصفوف والشعب", `${state.data.classes.length} / ${state.data.sections.length}`, "fa-school")}
+    ${stat("إجمالي الرسوم", money(total), "fa-file-invoice-dollar")}
+    ${stat("المدفوع", money(paid), "fa-money-bill-wave")}
+    ${stat("المتبقي", money(due), "fa-triangle-exclamation")}
+    ${stat("أقساط متأخرة", overdue, "fa-clock")}
+  </div>
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(340px,1fr));margin-top:14px">
+    ${panel("آخر الدفعات", button("عرض الدفعات", "fa-arrow-left", "app.go('installments')"), table(["الطالب", "القسط", "المبلغ", "التاريخ"], latestPayments, "لا توجد دفعات"))}
+    ${panel("تنبيهات", "", `<div style="padding:15px;display:grid;gap:10px">
+      <span class="badge ${due > 0 ? "bad" : "ok"}">المتبقي: ${money(due)}</span>
+      <span class="badge ${overdue > 0 ? "warn" : "ok"}">الأقساط المتأخرة: ${overdue}</span>
+      <span class="badge info">تأكد من ضبط رسوم كل صف قبل إضافة الطلاب</span>
+    </div>`)}
+  </div>`;
+}
+
+function viewStudents() {
+  const q = state.query.trim().toLowerCase();
+  const rows = state.data.students
+    .filter((s) => !q || nameOf(s).toLowerCase().includes(q) || (s.nationalId || "").includes(q) || studentClass(s).toLowerCase().includes(q))
+    .map((s) => {
+      const f = studentFinance(s.id);
+      return `<tr>
+        <td><strong style="cursor:pointer" onclick="app.go('student', ${s.id})">${esc(nameOf(s))}</strong><div class="muted">${esc(s.studentCode || "")}</div></td>
+        <td>${esc(s.nationalId || "غير مدخل")}</td>
+        <td>${esc(studentClass(s) || "غير محدد")}</td>
+        <td>${esc(studentSection(s) || "غير محدد")}</td>
+        <td>${esc(s.guardianName || "غير مدخل")}<div class="muted">${esc(s.guardianPhone || s.phone || "")}</div></td>
+        <td><strong>${money(f.paid)}</strong><div class="muted">من ${money(f.total)}</div></td>
+        <td>${f.due > 0 ? `<span class="badge bad">${money(f.due)}</span>` : `<span class="badge ok">مكتمل</span>`}</td>
+        <td>
+          ${icon("fa-eye", `app.go('student', ${s.id})`, "عرض")}
+          ${icon("fa-pen", `forms.student(${s.id})`, "تعديل")}
+          ${icon("fa-trash", `actions.remove('students', ${s.id})`, "حذف", "danger")}
+        </td>
+      </tr>`;
+    });
+  return panel("قائمة الطلاب", `${searchBox("بحث في الطلاب")}${button("طالب جديد", "fa-plus", "forms.student()", "primary")}`,
+    table(["الطالب", "الرقم الوطني", "الصف", "الشعبة", "ولي الأمر", "المدفوع", "المتبقي", "إجراءات"], rows));
+}
+
+function viewStudent() {
+  const s = byId(state.data.students, state.selectedStudentId);
+  if (!s) return `<div class="panel" style="padding:24px">الطالب غير موجود</div>`;
+  const f = studentFinance(s.id);
+  const installments = f.installments.map((i) => `<tr>
+    <td><strong>${esc(i.title)}</strong><div class="muted">${esc(i.notes || "")}</div></td>
+    <td>${money(i.amount)}</td><td>${money(i.paidAmount)}</td>
+    <td>${money(i.remainingAmount ?? Math.max((i.amount || 0) - (i.paidAmount || 0), 0))}</td>
+    <td>${esc(i.dueDate || "")}</td><td>${statusBadge(i.status)}</td>
+    <td>
+      ${icon("fa-money-bill", `forms.payment(${s.id}, ${i.id})`, "تسجيل دفعة", "success")}
+      ${icon("fa-pen", `forms.installment(${s.id}, ${i.id})`, "تعديل")}
+    </td>
+  </tr>`);
+  const payments = state.data.payments.filter((p) => String(p.student?.id) === String(s.id)).map((p) => `<tr>
+      <td>${esc(p.receiptNumber || "")}</td><td>${esc(p.installment?.title || "دفعة عامة")}</td>
+      <td>${money(p.amount)}</td><td>${esc(p.paymentDate || "")}</td><td>${esc(p.paymentMethod || "")}</td>
+      <td>${icon("fa-print", `actions.printReceipt(${p.id})`, "طباعة إيصال")}</td>
+    </tr>`);
+  const subjects = subjectsForClass(studentClassId(s)).map((subject) => {
+    const grades = state.data.grades.filter((g) => String(g.student?.id) === String(s.id) && String(g.subject?.id) === String(subject.id));
+    const summary = grades.length ? grades.map((g) => `${esc(g.exam?.name || "")}: ${Number(g.score || 0)}`).join("، ") : "لا توجد درجات";
+    return `<tr><td>${esc(subject.name)}</td><td>${summary}</td></tr>`;
+  });
+  return `<div class="detail">
+    <section class="panel">
+      <div class="panel-head">
+        <h2>${esc(nameOf(s))}</h2>
+        <div class="toolbar">
+          ${icon("fa-arrow-right", "app.go('students')", "رجوع")}
+          ${icon("fa-pen", `forms.student(${s.id})`, "تعديل")}
+        </div>
+      </div>
+      <div style="padding:15px" class="kv">
+        <div><span>الرقم الوطني</span><strong>${esc(s.nationalId || "غير مدخل")}</strong></div>
+        <div><span>تاريخ الميلاد</span><strong>${esc(s.birthDate || "غير مدخل")}</strong></div>
+        <div><span>السكن</span><strong>${esc(s.residence || s.address || "غير مدخل")}</strong></div>
+        <div><span>الصف والشعبة</span><strong>${esc(studentClass(s) || "غير محدد")} - ${esc(studentSection(s) || "غير محدد")}</strong></div>
+        <div><span>ولي الأمر</span><strong>${esc(s.guardianName || "غير مدخل")}</strong></div>
+        <div><span>الهاتف</span><strong>${esc(s.guardianPhone || s.phone || "غير مدخل")}</strong></div>
+      </div>
+    </section>
+    <div class="grid">
+      <div class="grid stats">
+        ${stat("إجمالي الرسوم", money(f.total), "fa-file-invoice-dollar")}
+        ${stat("المدفوع", money(f.paid), "fa-money-bill-wave")}
+        ${stat("المتبقي", money(f.due), "fa-triangle-exclamation")}
+      </div>
+      ${panel("الأقساط", `${button("إضافة قسط", "fa-plus", `forms.installment(${s.id})`, "primary")} ${button("تسجيل دفعة", "fa-money-bill", `forms.payment(${s.id})`, "success")}`, table(["القسط", "المبلغ", "المدفوع", "المتبقي", "الاستحقاق", "الحالة", "إجراءات"], installments, "لا توجد أقساط"))}
+      ${panel("الدفعات", "", table(["الإيصال", "القسط", "المبلغ", "التاريخ", "الطريقة", "طباعة"], payments, "لا توجد دفعات"))}
+      ${panel("المواد والدرجات", "", table(["المادة", "الدرجات المرصودة"], subjects, "لا توجد مواد مرتبطة بهذا الصف"))}
+    </div>
+  </div>`;
+}
+
+function viewInstallments() {
+  const q = state.query.trim().toLowerCase();
+  const rows = state.data.installments
+    .filter((i) => !q || nameOf(i.student).toLowerCase().includes(q) || (i.title || "").toLowerCase().includes(q))
+    .map((i) => `<tr>
+      <td><strong>${esc(nameOf(i.student))}</strong></td><td>${esc(i.title)}</td><td>${money(i.amount)}</td>
+      <td>${money(i.paidAmount)}</td><td>${money(i.remainingAmount ?? Math.max((i.amount || 0) - (i.paidAmount || 0), 0))}</td>
+      <td>${esc(i.dueDate || "")}</td><td>${statusBadge(i.status)}</td>
+      <td>
+        ${icon("fa-money-bill", `forms.payment(${i.student?.id}, ${i.id})`, "تسجيل دفعة", "success")}
+        ${icon("fa-pen", `forms.installment(${i.student?.id}, ${i.id})`, "تعديل")}
+      </td>
+    </tr>`);
+  return panel("كل الأقساط", `${searchBox("بحث في الأقساط")}${button("تسجيل دفعة", "fa-money-bill", "forms.payment()", "success")}`,
+    table(["الطالب", "القسط", "المبلغ", "المدفوع", "المتبقي", "الاستحقاق", "الحالة", "إجراءات"], rows));
+}
+
+function viewFees() {
+  const rows = state.data.fees.map((f) => `<tr>
+    <td>${esc(f.schoolClass?.name || "غير محدد")}</td><td>${esc(f.academicYear?.name || "غير محدد")}</td>
+    <td>${money(f.amount)}</td><td>${esc(f.type || "رسوم دراسية")}</td>
+    <td>${icon("fa-pen", `forms.fee(${f.id})`, "تعديل")} ${icon("fa-trash", `actions.remove('fees', ${f.id})`, "حذف", "danger")}</td>
+  </tr>`);
+  return panel("رسوم الصفوف", button("إضافة رسوم", "fa-plus", "forms.fee()", "primary"), table(["الصف", "السنة", "القيمة", "النوع", "إجراءات"], rows));
+}
+
+function viewTeachers() {
+  const q = state.query.trim().toLowerCase();
+  const rows = state.data.teachers
+    .filter((t) => !q || nameOf(t).toLowerCase().includes(q) || (t.nationalId || "").includes(q) || (t.identityNumber || "").includes(q))
+    .map((t) => `<tr>
+      <td><strong>${esc(nameOf(t))}</strong><div class="muted">${esc(t.teacherCode || "")}</div></td>
+      <td>${esc(t.nationalId || "غير مدخل")}</td><td>${esc(t.identityNumber || "غير مدخل")}</td>
+      <td>${esc((t.subjects || []).map((s) => s.name).join("، ") || t.specialization || "غير محدد")}</td>
+      <td>${money(t.salary)}</td><td>${esc(t.phone || "")}</td>
+      <td>${icon("fa-pen", `forms.teacher(${t.id})`, "تعديل")} ${icon("fa-trash", `actions.remove('teachers', ${t.id})`, "حذف", "danger")}</td>
+    </tr>`);
+  return panel("قائمة المعلمين", `${searchBox("بحث في المعلمين")}${button("معلم جديد", "fa-plus", "forms.teacher()", "primary")}`,
+    table(["المعلم", "الرقم الوطني", "رقم الهوية", "المواد", "الراتب", "الهاتف", "إجراءات"], rows));
+}
+
+function viewSubjects() {
+  const q = state.query.trim().toLowerCase();
+  const rows = state.data.subjects
+    .filter((s) => !q || s.name.toLowerCase().includes(q) || (s.code || "").toLowerCase().includes(q))
+    .map((s) => `<tr>
+      <td><strong>${esc(s.name)}</strong></td><td>${esc(s.code || "-")}</td><td>${esc(s.description || "-")}</td><td>${s.creditHours || 1}</td>
+      <td>${icon("fa-pen", `forms.subject(${s.id})`, "تعديل")} ${icon("fa-trash", `actions.remove('subjects', ${s.id})`, "حذف", "danger")}</td>
+    </tr>`);
+  return panel("المواد الدراسية", `${searchBox("بحث في المواد")}${button("مادة جديدة", "fa-plus", "forms.subject()", "primary")}`,
+    table(["المادة", "الرمز", "الوصف", "الساعات", "إجراءات"], rows));
+}
+
+function viewClasses() {
+  const currentYearId = state.data.years.find((y) => y.currentYear)?.id;
+  const classRows = state.data.classes.map((c) => `<tr>
+    <td><strong>${esc(c.name)}</strong></td><td>${esc(c.description || "")}</td>
+    <td>${state.data.sections.filter((s) => String(s.schoolClass?.id) === String(c.id)).length}</td>
+    <td>${esc(classSubjectsFor(c.id).map((x) => x.subject?.name).filter(Boolean).join("، ") || "غير محدد")}</td>
+    <td>${money(feeForClass(c.id, currentYearId))}</td>
+    <td>${icon("fa-book", `forms.classSubject(${c.id})`, "إضافة مادة")} ${icon("fa-trash", `actions.remove('classes', ${c.id})`, "حذف", "danger")}</td>
+  </tr>`);
+  const subjectRows = state.data.classSubjects.map((x) => `<tr>
+    <td>${esc(x.schoolClass?.name || "")}</td><td>${esc(x.subject?.name || "")}</td><td>${esc(nameOf(x.teacher))}</td>
+    <td>${icon("fa-trash", `actions.remove('class-subjects', ${x.id})`, "حذف", "danger")}</td>
+  </tr>`);
+  const sectionRows = state.data.sections.map((s) => `<tr>
+    <td>${esc(s.name)}</td><td>${esc(s.schoolClass?.name || "غير محدد")}</td>
+    <td>${icon("fa-trash", `actions.remove('sections', ${s.id})`, "حذف", "danger")}</td>
+  </tr>`);
+  return `<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(360px,1fr))">
+    ${panel("الصفوف", button("إضافة صف", "fa-plus", "forms.schoolClass()", "primary"), table(["الصف", "الوصف", "عدد الشعب", "المواد", "رسوم السنة", "إجراءات"], classRows))}
+    ${panel("الشعب", button("إضافة شعبة", "fa-plus", "forms.section()", "primary"), table(["الشعبة", "الصف", "إجراءات"], sectionRows))}
+    ${panel("مواد الصفوف", button("ربط مادة", "fa-book", "forms.classSubject()", "primary"), table(["الصف", "المادة", "المعلم", "إجراءات"], subjectRows, "لا توجد مواد مرتبطة"))}
+  </div>`;
+}
+
+function viewAcademicYears() {
+  const rows = state.data.years.map((y) => `<tr>
+    <td><strong>${esc(y.name)}</strong></td><td>${esc(y.startDate || "-")}</td><td>${esc(y.endDate || "-")}</td>
+    <td>${y.currentYear ? `<span class="badge ok">الحالية</span>` : `<span class="badge gray">سابقة</span>`}</td>
+    <td><span class="badge info">${esc(y.status || "OPEN")}</span></td>
+    <td>${icon("fa-pen", `forms.academicYear(${y.id})`, "تعديل")} ${icon("fa-trash", `actions.remove('academic-years', ${y.id})`, "حذف", "danger")}</td>
+  </tr>`);
+  return panel("السنوات الدراسية", button("إضافة سنة", "fa-plus", "forms.academicYear()", "primary"), table(["السنة", "تاريخ البداية", "تاريخ النهاية", "الحالية", "الحالة", "إجراءات"], rows));
+}
+
+function viewAttendance() {
+  const q = state.query.trim().toLowerCase();
+  const selectedClassId = window.attendanceClassId || state.data.classes[0]?.id || "";
+  const statusLabel = { PRESENT: "حاضر", ABSENT: "غائب", LATE: "متأخر", EXCUSED: "معذر" };
+  const statusClass = { PRESENT: "ok", ABSENT: "bad", LATE: "warn", EXCUSED: "info" };
+  const rows = (state.data.attendance || [])
+    .filter((a) => !selectedClassId || String(studentClassId(a.student)) === String(selectedClassId))
+    .filter((a) => !q || nameOf(a.student).toLowerCase().includes(q))
+    .map((a) => `<tr>
+      <td>${esc(nameOf(a.student))}</td><td>${esc(studentClass(a.student) || "غير محدد")}</td>
+      <td>${esc(studentSection(a.student) || "غير محدد")}</td><td>${esc(a.attendanceDate || a.date || "")}</td>
+      <td><span class="badge ${statusClass[a.status] || "gray"}">${statusLabel[a.status] || a.status}</span></td>
+      <td>${esc(a.notes || "-")}</td>
+      <td>${icon("fa-trash", `actions.remove('attendance', ${a.id})`, "حذف", "danger")}</td>
+    </tr>`);
+  return `<div class="grid">
+    <section class="panel">
+      <div class="panel-head"><h2>تسجيل حضور صف كامل</h2></div>
+      <div style="padding:15px" class="form">
+        <div class="row">
+          <div class="field"><label>الصف</label><select onchange="window.attendanceClassId=this.value;render()">${selectOptions(state.data.classes, selectedClassId)}</select></div>
+          <div class="field"><label>التاريخ</label><input type="date" value="${today()}" onchange="window.attendanceDate=this.value"></div>
+        </div>
+        <div class="toolbar">${button("تحديد حضور الطلاب", "fa-clipboard-check", `forms.attendanceClass(${selectedClassId || "null"})`, "primary")}</div>
+      </div>
+    </section>
+    ${panel("سجل الحضور والغياب", `${searchBox("بحث في الحضور")}${button("تسجيل طالب واحد", "fa-plus", "forms.attendance()", "primary")}`, table(["الطالب", "الصف", "الشعبة", "التاريخ", "الحالة", "ملاحظات", "إجراءات"], rows))}
+  </div>`;
+}
+
+function viewGrades() {
+  const selectedClassId = window.gradeClassId || state.data.classes[0]?.id || "";
+  const selectedSubjectId = window.gradeSubjectId || subjectsForClass(selectedClassId)[0]?.id || "";
+  const classStudents = state.data.students.filter((s) => !selectedClassId || String(studentClassId(s)) === String(selectedClassId));
+  const classSubjects = subjectsForClass(selectedClassId);
+  const rows = state.data.grades
+    .filter((g) => !selectedClassId || String(studentClassId(g.student)) === String(selectedClassId))
+    .filter((g) => !selectedSubjectId || String(g.subject?.id) === String(selectedSubjectId))
+    .map((g) => `<tr>
+    <td>${esc(nameOf(g.student))}</td><td>${esc(g.subject?.name || "")}</td><td>${esc(g.exam?.name || "")}</td>
+    <td><strong>${Number(g.score || 0)}</strong></td><td><span class="badge info">${gradeLabel(g.score)}</span></td>
+    <td>${icon("fa-trash", `actions.remove('grades', ${g.id})`, "حذف", "danger")}</td>
+  </tr>`);
+  const examRows = state.data.exams.map((e) => `<tr><td>${esc(e.name)}</td><td>${esc(e.type)}</td><td>${esc(e.academicYear?.name || "")}</td></tr>`);
+  const rosterRows = classStudents.map((s) => {
+    const grades = state.data.grades.filter((g) => String(g.student?.id) === String(s.id) && String(g.subject?.id) === String(selectedSubjectId));
+    return `<tr><td>${esc(nameOf(s))}</td><td>${esc(studentSection(s))}</td><td>${grades.map((g) => `${esc(g.exam?.name || "")}: ${Number(g.score || 0)}`).join("، ") || "غير مرصودة"}</td><td>${button("إدخال درجة", "fa-pen", `forms.grade(${s.id}, ${selectedSubjectId})`, "primary")}</td></tr>`;
+  });
+  return `<div class="grid">
+    <section class="panel">
+      <div class="panel-head"><h2>درجات مادة حسب الصف</h2></div>
+      <div style="padding:15px" class="form">
+        <div class="row">
+          <div class="field"><label>الصف</label><select onchange="window.gradeClassId=this.value;window.gradeSubjectId='';render()">${selectOptions(state.data.classes, selectedClassId)}</select></div>
+          <div class="field"><label>المادة</label><select onchange="window.gradeSubjectId=this.value;render()">${selectOptions(classSubjects, selectedSubjectId)}</select></div>
+        </div>
+      </div>
+      ${table(["الطالب", "الشعبة", "الدرجات", "إجراء"], rosterRows, "لا يوجد طلاب في هذا الصف")}
+    </section>
+    ${panel("الدرجات", button("إضافة درجة", "fa-plus", "forms.grade()", "primary"), table(["الطالب", "المادة", "الاختبار", "الدرجة", "التقدير", "إجراءات"], rows))}
+    ${panel("الاختبارات", button("إضافة اختبار", "fa-plus", "forms.exam()", "primary"), table(["الاختبار", "النوع", "السنة"], examRows, "لا توجد اختبارات"))}
+  </div>`;
+}
+
+function viewPromotion() {
+  const sourceClassId = window.promotionSourceClass || state.data.classes[0]?.id || "";
+  const targetClassId = window.promotionTargetClass || state.data.classes[1]?.id || sourceClassId;
+  const targetSections = state.data.sections.filter((s) => String(s.schoolClass?.id) === String(targetClassId));
+  const targetSectionId = window.promotionTargetSection || targetSections[0]?.id || "";
+  const targetYearId = window.promotionTargetYear || state.data.years.find((y) => y.currentYear)?.id || state.data.years[0]?.id || "";
+  const candidates = state.data.students
+    .filter((s) => String(studentClassId(s)) === String(sourceClassId))
+    .map((s) => ({ student: s, average: studentAverage(s.id) }))
+    .filter((x) => x.average !== null && x.average >= 50);
+  const rows = candidates.map(({ student, average }) => `<tr>
+    <td><strong>${esc(nameOf(student))}</strong><div class="muted">${esc(studentSection(student))}</div></td>
+    <td>${average.toFixed(1)}</td><td><span class="badge ok">ناجح</span></td>
+  </tr>`);
+  return `<div class="grid">
+    <section class="panel">
+      <div class="panel-head"><h2>إعداد النقل</h2></div>
+      <div style="padding:15px" class="form">
+        <div class="row">
+          <div class="field"><label>من الصف</label><select onchange="window.promotionSourceClass=this.value;render()">${selectOptions(state.data.classes, sourceClassId)}</select></div>
+          <div class="field"><label>إلى الصف</label><select onchange="window.promotionTargetClass=this.value;window.promotionTargetSection='';render()">${selectOptions(state.data.classes, targetClassId)}</select></div>
+        </div>
+        <div class="row">
+          <div class="field"><label>الشعبة الجديدة</label><select onchange="window.promotionTargetSection=this.value">${selectOptions(targetSections, targetSectionId)}</select></div>
+          <div class="field"><label>السنة الجديدة</label><select onchange="window.promotionTargetYear=this.value">${selectOptions(state.data.years, targetYearId)}</select></div>
+        </div>
+        <div class="toolbar">
+          ${button("نقل الناجحين", "fa-arrow-up-right-dots", "actions.promotePassed()", "primary")}
+          ${button("طباعة قائمة الناجحين", "fa-print", "actions.printPromotionList()")}
+        </div>
+      </div>
+    </section>
+    ${panel("الطلاب الناجحون الجاهزون للنقل", "", table(["الطالب", "المتوسط", "الحالة"], rows, "لا توجد درجات ناجحة لهذا الصف"))}
+  </div>`;
+}
+
+function viewUsers() {
+  if (!isAdmin()) return `<div class="panel" style="padding:24px">هذه الشاشة متاحة للمدير فقط</div>`;
+  const rows = state.data.users.map((u) => `<tr>
+    <td><strong>${esc(u.username)}</strong></td><td>${esc(u.fullName || "-")}</td><td>${esc(u.role?.name || "-")}</td>
+    <td>${u.enabled ? `<span class="badge ok">مفعل</span>` : `<span class="badge bad">معطل</span>`}</td>
+    <td>${icon("fa-pen", `forms.user(${u.id})`, "تعديل")} ${icon("fa-trash", `actions.remove('users', ${u.id})`, "حذف", "danger")}</td>
+  </tr>`);
+  return panel("المستخدمون", button("مستخدم جديد", "fa-plus", "forms.user()", "primary"), table(["اسم المستخدم", "الاسم الكامل", "الدور", "الحالة", "إجراءات"], rows));
+}
+
+function viewReports() {
+  const reports = [["students", "تقرير الطلاب", "بيانات الطلاب والصفوف"], ["teachers", "تقرير المعلمين", "بيانات المعلمين والرواتب"], ["installments", "تقرير الأقساط", "المبالغ والاستحقاقات"], ["payments", "تقرير الدفعات", "سجل التحصيل"]];
+  return `<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+    <section class="panel" style="padding:16px">
+      <h2 style="margin:0 0 5px;font-size:16px">نسخة احتياطية</h2>
+      <p class="muted" style="margin:0 0 14px">تنزيل نسخة محدثة من البيانات الأساسية</p>
+      <div class="toolbar">${button("تحديث النسخة", "fa-download", "actions.backup()", "success")}</div>
+    </section>
+    ${reports.map(([type, title, desc]) => `
+      <section class="panel" style="padding:16px">
+        <h2 style="margin:0 0 5px;font-size:16px">${title}</h2>
+        <p class="muted" style="margin:0 0 14px">${desc}</p>
+        <div class="toolbar">
+          ${button("تصدير", "fa-file-csv", `actions.exportCsv('${type}')`, "primary")}
+          ${button("طباعة", "fa-print", `actions.printReport('${type}')`)}
+        </div>
+      </section>`).join("")}
+  </div>`;
+}
+
+const forms = {
+  student(id) {
+    const s = id ? byId(state.data.students, id) : {};
+    const classId = studentClassId(s) || state.data.classes[0]?.id || "";
+    const yearId = studentYearId(s) || state.data.years.find((y) => y.currentYear)?.id || state.data.years[0]?.id || "";
+    const sections = state.data.sections.filter((x) => String(x.schoolClass?.id) === String(classId));
+    const total = id ? Number(s.totalFees || studentFinance(id).total || 0) : feeForClass(classId, yearId);
+    ui.modal(id ? "تعديل طالب" : "إضافة طالب", `
+      <div class="form">
+        <div class="field"><label>الاسم الرباعي *</label><input id="st_full" value="${esc(nameOf(s) === "بدون اسم" ? "" : nameOf(s))}"></div>
+        <div class="row">
+          <div class="field"><label>الرقم الوطني *</label><input id="st_nid" value="${esc(s.nationalId || "")}"></div>
+          <div class="field"><label>تاريخ الميلاد</label><input type="date" id="st_birth" value="${esc(s.birthDate || "")}"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label>الصف *</label><select id="st_class" onchange="window.forms.syncStudentSections()">${selectOptions(state.data.classes, classId)}</select></div>
+          <div class="field"><label>الشعبة *</label><select id="st_section">${selectOptions(sections, s.section?.id)}</select></div>
+        </div>
+        <div class="row">
+          <div class="field"><label>السنة الدراسية *</label><select id="st_year" onchange="window.forms.syncStudentFee()">${selectOptions(state.data.years, yearId)}</select></div>
+          <div class="field"><label>إجمالي الرسوم</label><input type="number" id="st_total" min="0" value="${total}"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label>مكان السكن</label><input id="st_home" value="${esc(s.residence || s.address || "")}"></div>
+          <div class="field"><label>رقم الهاتف</label><input id="st_phone" value="${esc(s.phone || "")}"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label>اسم ولي الأمر</label><input id="st_guardian" value="${esc(s.guardianName || "")}"></div>
+          <div class="field"><label>هاتف ولي الأمر</label><input id="st_guardian_phone" value="${esc(s.guardianPhone || "")}"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label>الجنس</label><select id="st_gender"><option value="Male" ${s.gender === "Male" ? "selected" : ""}>ذكر</option><option value="Female" ${s.gender === "Female" ? "selected" : ""}>أنثى</option></select></div>
+          <div class="field"><label>البريد الإلكتروني</label><input id="st_email" value="${esc(s.email || "")}"></div>
+        </div>
+      </div>`,
+      `${button("حفظ", "fa-save", `actions.saveStudent(${id || "null"})`, "primary")}${button("إلغاء", "fa-xmark", "ui.closeModal()")}`);
+  },
+  syncStudentSections() {
+    const classId = $("st_class").value; const yearId = $("st_year").value;
+    $("st_section").innerHTML = selectOptions(state.data.sections.filter((x) => String(x.schoolClass?.id) === String(classId)));
+    const fee = feeForClass(classId, yearId); if (fee > 0) $("st_total").value = fee;
+  },
+  syncStudentFee() {
+    const fee = feeForClass($("st_class").value, $("st_year").value); if (fee > 0) $("st_total").value = fee;
+  },
+  fee(id) {
+    const f = id ? byId(state.data.fees, id) : {};
+    ui.modal(id ? "تعديل رسوم" : "إضافة رسوم", `
+      <div class="form">
+        <div class="row">
+          <div class="field"><label>الصف *</label><select id="fee_class">${selectOptions(state.data.classes, f.schoolClass?.id)}</select></div>
+          <div class="field"><label>السنة *</label><select id="fee_year">${selectOptions(state.data.years, f.academicYear?.id)}</select></div>
+        </div>
+        <div class="row">
+          <div class="field"><label>القيمة *</label><input type="number" id="fee_amount" min="1" value="${f.amount || ""}"></div>
+          <div class="field"><label>النوع</label><input id="fee_type" value="${esc(f.type || "رسوم دراسية")}"></div>
+        </div>
+        <div class="field"><label>ملاحظات</label><textarea id="fee_notes">${esc(f.notes || "")}</textarea></div>
+      </div>`,
+      `${button("حفظ", "fa-save", `actions.saveFee(${id || "null"})`, "primary")}${button("إلغاء", "fa-xmark", "ui.closeModal()")}`);
+  },
+  installment(studentId, id) {
+    const i = id ? byId(state.data.installments, id) : {};
+    const student = studentId ? byId(state.data.students, studentId) : state.data.students[0];
+    const defaultAmount = id ? (i.amount || "") : (student ? (student.totalFees || studentFinance(student.id).total || "") : "");
+    ui.modal(id ? "تعديل قسط" : "إضافة قسط", `
+      <div class="form">
+        <div class="field"><label>الطالب *</label><select id="ins_student" onchange="window.forms.syncInstallmentAmount()">${selectOptions(state.data.students, student?.id, nameOf)}</select></div>
+        <div class="row">
+          <div class="field"><label>اسم القسط *</label><input id="ins_title" value="${esc(i.title || "القسط الأول")}"></div>
+          <div class="field"><label>المبلغ *</label><input type="number" id="ins_amount" min="1" value="${defaultAmount}"></div>
+        </div>
+        <div class="row"><div class="field"><label>تاريخ الاستحقاق *</label><input type="date" id="ins_due" value="${esc(i.dueDate || today())}"></div></div>
+        <div class="field"><label>ملاحظات</label><textarea id="ins_notes">${esc(i.notes || "")}</textarea></div>
+      </div>`,
+      `${button("حفظ", "fa-save", `actions.saveInstallment(${id || "null"})`, "primary")}${button("إلغاء", "fa-xmark", "ui.closeModal()")}`);
+  },
+  syncInstallmentAmount() {
+    const student = byId(state.data.students, $("ins_student").value);
+    if (student) { const amount = student.totalFees || studentFinance(student.id).total || 0; if (amount > 0) $("ins_amount").value = amount; }
+  },
+  payment(studentId, installmentId) {
+    const student = byId(state.data.students, studentId) || state.data.students[0];
+    const studentInstallments = state.data.installments.filter((i) => String(i.student?.id) === String(student?.id));
+    const inst = installmentId ? byId(state.data.installments, installmentId) : null;
+    const due = inst ? Number(inst.remainingAmount ?? Math.max((inst.amount || 0) - (inst.paidAmount || 0), 0)) : studentFinance(student?.id).due;
+    ui.modal("تسجيل دفعة", `
+      <div class="form">
+        <div class="field"><label>الطالب *</label><select id="pay_student">${selectOptions(state.data.students, student?.id, nameOf)}</select></div>
+        <div class="field"><label>القسط</label><select id="pay_installment"><option value="">دفعة عامة</option>${selectOptions(studentInstallments, installmentId, (i) => `${i.title} - المتبقي ${money(i.remainingAmount ?? Math.max((i.amount||0)-(i.paidAmount||0),0))}`)}</select></div>
+        <div class="row">
+          <div class="field"><label>المبلغ *</label><input type="number" id="pay_amount" min="1" value="${due || ""}"></div>
+          <div class="field"><label>طريقة الدفع</label><select id="pay_method"><option>نقدي</option><option>تحويل مصرفي</option><option>شيك</option></select></div>
+        </div>
+        <div class="row">
+          <div class="field"><label>رقم الإيصال</label><input id="pay_receipt"></div>
+          <div class="field"><label>التاريخ *</label><input type="date" id="pay_date" value="${today()}"></div>
+        </div>
+        <div class="field"><label>ملاحظات</label><textarea id="pay_notes"></textarea></div>
+      </div>`,
+      `${button("تسجيل", "fa-save", "actions.savePayment()", "success")}${button("إلغاء", "fa-xmark", "ui.closeModal()")}`);
+  },
+  teacher(id) {
+    const t = id ? byId(state.data.teachers, id) : {};
+    const selected = (t.subjects || []).map((s) => String(s.id));
+    ui.modal(id ? "تعديل معلم" : "إضافة معلم", `
+      <div class="form">
+        <div class="field"><label>الاسم الرباعي *</label><input id="te_full" value="${esc(nameOf(t) === "بدون اسم" ? "" : nameOf(t))}"></div>
+        <div class="row">
+          <div class="field"><label>الرقم الوطني</label><input id="te_nid" value="${esc(t.nationalId || "")}"></div>
+          <div class="field"><label>رقم الهوية</label><input id="te_identity" value="${esc(t.identityNumber || "")}"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label>الهاتف</label><input id="te_phone" value="${esc(t.phone || "")}"></div>
+          <div class="field"><label>الراتب</label><input type="number" id="te_salary" min="0" value="${t.salary || 0}"></div>
+        </div>
+        <div class="field"><label>المواد</label><select id="te_subjects" multiple style="height:120px">${state.data.subjects.map((s) => `<option value="${s.id}" ${selected.includes(String(s.id)) ? "selected" : ""}>${esc(s.name)}</option>`).join("")}</select></div>
+        <div class="field"><label>العنوان</label><textarea id="te_address">${esc(t.address || "")}</textarea></div>
+        <div class="field"><label>ملاحظات الجدول</label><textarea id="te_schedule">${esc(t.scheduleNotes || "")}</textarea></div>
+      </div>`,
+      `${button("حفظ", "fa-save", `actions.saveTeacher(${id || "null"})`, "primary")}${button("إلغاء", "fa-xmark", "ui.closeModal()")}`);
+  },
+  schoolClass() {
+    ui.modal("إضافة صف", `<div class="form"><div class="field"><label>اسم الصف *</label><input id="cl_name"></div><div class="field"><label>الوصف</label><textarea id="cl_desc"></textarea></div></div>`,
+      `${button("حفظ", "fa-save", "actions.saveClass()", "primary")}${button("إلغاء", "fa-xmark", "ui.closeModal()")}`);
+  },
+  section() {
+    ui.modal("إضافة شعبة", `<div class="form"><div class="field"><label>اسم الشعبة *</label><input id="se_name"></div><div class="field"><label>الصف *</label><select id="se_class">${selectOptions(state.data.classes)}</select></div></div>`,
+      `${button("حفظ", "fa-save", "actions.saveSection()", "primary")}${button("إلغاء", "fa-xmark", "ui.closeModal()")}`);
+  },
+  classSubject(classId) {
+    ui.modal("ربط مادة بصف", `
+      <div class="form">
+        <div class="field"><label>الصف *</label><select id="cs_class">${selectOptions(state.data.classes, classId || "")}</select></div>
+        <div class="field"><label>المادة *</label><select id="cs_subject">${selectOptions(state.data.subjects)}</select></div>
+        <div class="field"><label>المعلم</label><select id="cs_teacher"><option value="">بدون تحديد</option>${selectOptions(state.data.teachers, "", nameOf)}</select></div>
+      </div>`,
+      `${button("حفظ", "fa-save", "actions.saveClassSubject()", "primary")}${button("إلغاء", "fa-xmark", "ui.closeModal()")}`);
+  },
+  exam() {
+    ui.modal("إضافة اختبار", `
+      <div class="form">
+        <div class="field"><label>اسم الاختبار *</label><input id="ex_name"></div>
+        <div class="row">
+          <div class="field"><label>النوع *</label><select id="ex_type"><option value="FIRST_TERM">الفصل الأول</option><option value="SECOND_TERM">الفصل الثاني</option><option value="FINAL">نهائي</option></select></div>
+          <div class="field"><label>السنة الدراسية</label><select id="ex_year">${selectOptions(state.data.years)}</select></div>
+        </div>
+      </div>`,
+      `${button("حفظ", "fa-save", "actions.saveExam()", "primary")}${button("إلغاء", "fa-xmark", "ui.closeModal()")}`);
+  },
+  grade(studentId, subjectId) {
+    const student = byId(state.data.students, studentId) || state.data.students[0];
+    const subjects = subjectsForClass(studentClassId(student));
+    ui.modal("إضافة درجة", `
+      <div class="form">
+        <div class="field"><label>الطالب *</label><select id="gr_student" onchange="window.forms.syncGradeSubjects()">${selectOptions(state.data.students, student?.id, nameOf)}</select></div>
+        <div class="row">
+          <div class="field"><label>المادة *</label><select id="gr_subject">${selectOptions(subjects, subjectId || "")}</select></div>
+          <div class="field"><label>الاختبار *</label><select id="gr_exam">${selectOptions(state.data.exams)}</select></div>
+        </div>
+        <div class="field"><label>الدرجة * (0 - 100)</label><input type="number" id="gr_score" min="0" max="100"></div>
+      </div>`,
+      `${button("حفظ", "fa-save", "actions.saveGrade()", "primary")}${button("إلغاء", "fa-xmark", "ui.closeModal()")}`);
+  },
+  syncGradeSubjects() {
+    const student = byId(state.data.students, $("gr_student").value);
+    $("gr_subject").innerHTML = selectOptions(subjectsForClass(studentClassId(student)));
+  },
+  subject(id) {
+    const s = id ? byId(state.data.subjects, id) : {};
+    ui.modal(id ? "تعديل مادة" : "إضافة مادة", `
+      <div class="form">
+        <div class="field"><label>اسم المادة *</label><input id="sb_name" value="${esc(s.name || "")}"></div>
+        <div class="row">
+          <div class="field"><label>الرمز</label><input id="sb_code" value="${esc(s.code || "")}"></div>
+          <div class="field"><label>الساعات</label><input type="number" id="sb_hours" min="1" value="${s.creditHours || 1}"></div>
+        </div>
+        <div class="field"><label>الوصف</label><textarea id="sb_desc">${esc(s.description || "")}</textarea></div>
+      </div>`,
+      `${button("حفظ", "fa-save", `actions.saveSubject(${id || "null"})`, "primary")}${button("إلغاء", "fa-xmark", "ui.closeModal()")}`);
+  },
+  academicYear(id) {
+    const y = id ? byId(state.data.years, id) : {};
+    ui.modal(id ? "تعديل سنة دراسية" : "إضافة سنة دراسية", `
+      <div class="form">
+        <div class="field"><label>اسم السنة *</label><input id="ay_name" value="${esc(y.name || "")}"></div>
+        <div class="row">
+          <div class="field"><label>تاريخ البداية</label><input type="date" id="ay_start" value="${esc(y.startDate || "")}"></div>
+          <div class="field"><label>تاريخ النهاية</label><input type="date" id="ay_end" value="${esc(y.endDate || "")}"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label>السنة الحالية</label><select id="ay_current"><option value="false" ${!y.currentYear ? "selected" : ""}>لا</option><option value="true" ${y.currentYear ? "selected" : ""}>نعم</option></select></div>
+          <div class="field"><label>الحالة</label><select id="ay_status"><option value="OPEN" ${y.status === "OPEN" ? "selected" : ""}>مفتوحة</option><option value="CLOSED" ${y.status === "CLOSED" ? "selected" : ""}>مغلقة</option></select></div>
+        </div>
+      </div>`,
+      `${button("حفظ", "fa-save", `actions.saveAcademicYear(${id || "null"})`, "primary")}${button("إلغاء", "fa-xmark", "ui.closeModal()")}`);
+  },
+  attendance() {
+    ui.modal("تسجيل حضور", `
+      <div class="form">
+        <div class="field"><label>الطالب *</label><select id="at_student">${selectOptions(state.data.students, "", nameOf)}</select></div>
+        <div class="row">
+          <div class="field"><label>التاريخ *</label><input type="date" id="at_date" value="${today()}"></div>
+          <div class="field"><label>الحالة *</label><select id="at_status"><option value="PRESENT">حاضر</option><option value="ABSENT">غائب</option><option value="LATE">متأخر</option><option value="EXCUSED">معذر</option></select></div>
+        </div>
+        <div class="field"><label>ملاحظات</label><textarea id="at_notes"></textarea></div>
+      </div>`,
+      `${button("تسجيل", "fa-save", "actions.saveAttendance()", "success")}${button("إلغاء", "fa-xmark", "ui.closeModal()")}`);
+  },
+  attendanceClass(classId) {
+    const selectedClassId = classId || window.attendanceClassId || state.data.classes[0]?.id || "";
+    const date = window.attendanceDate || today();
+    const students = state.data.students.filter((s) => String(studentClassId(s)) === String(selectedClassId));
+    const rows = students.map((s) => `<tr>
+      <td><strong>${esc(nameOf(s))}</strong><div class="muted">${esc(studentSection(s) || "")}</div></td>
+      <td><select id="at_status_${s.id}"><option value="PRESENT">حاضر</option><option value="ABSENT">غائب</option><option value="LATE">متأخر</option><option value="EXCUSED">معذر</option></select></td>
+      <td><input id="at_notes_${s.id}" placeholder="ملاحظات"></td>
+    </tr>`).join("");
+    ui.modal("تسجيل حضور صف كامل", `
+      <div class="form">
+        <div class="row">
+          <div class="field"><label>الصف</label><select id="at_class" onchange="window.attendanceClassId=this.value;window.forms.attendanceClass(this.value)">${selectOptions(state.data.classes, selectedClassId)}</select></div>
+          <div class="field"><label>التاريخ</label><input type="date" id="at_bulk_date" value="${date}"></div>
+        </div>
+        ${table(["الطالب", "الحالة", "ملاحظات"], rows, "لا يوجد طلاب في هذا الصف")}
+      </div>`,
+      `${button("حفظ الحضور", "fa-save", "actions.saveClassAttendance()", "success")}${button("إلغاء", "fa-xmark", "ui.closeModal()")}`);
+  },
+  user(id) {
+    const u = id ? byId(state.data.users, id) : {};
+    ui.modal(id ? "تعديل مستخدم" : "إضافة مستخدم", `
+      <div class="form">
+        <div class="field"><label>اسم المستخدم *</label><input id="us_username" value="${esc(u.username || "")}"></div>
+        <div class="row">
+          <div class="field"><label>${id ? "كلمة المرور (اترك فارغاً للإبقاء)" : "كلمة المرور *"}</label><input type="password" id="us_password"></div>
+          <div class="field"><label>الاسم الكامل *</label><input id="us_full" value="${esc(u.fullName || "")}"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label>الدور *</label><select id="us_role">${selectOptions(state.data.roles || [], u.role?.id, (r) => r.name)}</select></div>
+          <div class="field"><label>الحالة</label><select id="us_enabled"><option value="true" ${u.enabled !== false ? "selected" : ""}>مفعل</option><option value="false" ${u.enabled === false ? "selected" : ""}>معطل</option></select></div>
+        </div>
+      </div>`,
+      `${button("حفظ", "fa-save", `actions.saveUser(${id || "null"})`, "primary")}${button("إلغاء", "fa-xmark", "ui.closeModal()")}`);
+  }
+};
+
+const actions = {
+  async wrap(fn) { try { await fn(); } catch (e) { ui.toast(e.message || "حدث خطأ غير متوقع", "error"); } },
+  async remove(endpoint, id) {
+    if (!confirm("هل أنت متأكد من الحذف؟ لا يمكن التراجع عن هذه العملية.")) return;
+    await actions.wrap(async () => { await api.del(`/${endpoint}/${id}`); await app.refresh(); ui.toast("تم الحذف بنجاح"); });
+  },
+  logout() {
+    if (!confirm("هل تريد تسجيل الخروج؟")) return;
+    window.location.reload(); // إعادة تحميل الصفحة لمحاكاة الخروج
+  },
+  async saveStudent(id) {
+    const full = $("st_full").value.trim();
+    if (!full) return ui.toast("أدخل الاسم الرباعي", "error");
+    if (!$("st_section").value) return ui.toast("اختر الشعبة", "error");
+    if (!$("st_year").value) return ui.toast("اختر السنة الدراسية", "error");
+    const parts = splitName(full);
+    const body = {
+      studentCode: id ? byId(state.data.students, id)?.studentCode : `ST-${Date.now()}`,
+      firstName: parts.firstName, lastName: parts.lastName, fullName: full,
+      nationalId: $("st_nid").value.trim(), birthDate: $("st_birth").value || null,
+      gender: $("st_gender").value, phone: $("st_phone").value.trim(), email: $("st_email").value.trim(),
+      address: $("st_home").value.trim(), residence: $("st_home").value.trim(),
+      guardianName: $("st_guardian").value.trim(), guardianPhone: $("st_guardian_phone").value.trim(),
+      totalFees: Number($("st_total").value || 0), section: { id: Number($("st_section").value) },
+      academicYear: { id: Number($("st_year").value) }, status: true
+    };
+    await actions.wrap(async () => {
+      const saved = id ? await api.put(`/students/${id}`, body) : await api.post("/students", body);
+      if (!id && body.totalFees > 0) {
+        await api.post("/installments", { student: { id: saved.id }, title: "القسط الأول", amount: body.totalFees, paidAmount: 0, dueDate: today(), status: "UNPAID", notes: "قسط افتتاحي" });
+      }
+      ui.closeModal(); await app.refresh(); ui.toast(id ? "تم تعديل بيانات الطالب" : "تم إضافة الطالب بنجاح");
+    });
+  },
+  async saveFee(id) {
+    if (!$("fee_class").value || !$("fee_year").value || Number($("fee_amount").value) <= 0) return ui.toast("أكمل الصف والسنة والقيمة", "error");
+    const body = { schoolClass: { id: Number($("fee_class").value) }, academicYear: { id: Number($("fee_year").value) }, amount: Number($("fee_amount").value), type: $("fee_type").value.trim() || "رسوم دراسية", status: "UNPAID", notes: $("fee_notes").value.trim() };
+    await actions.wrap(async () => { id ? await api.put(`/fees/${id}`, body) : await api.post("/fees", body); ui.closeModal(); await app.refresh(); ui.toast("تم حفظ الرسوم"); });
+  },
+  async saveInstallment(id) {
+    const studentId = $("ins_student").value; const title = $("ins_title").value.trim(); const amount = Number($("ins_amount").value); const paid = Number($("ins_paid").value || 0); const dueDate = $("ins_due").value;
+    if (!studentId) return ui.toast("اختر الطالب", "error");
+    if (!title) return ui.toast("أدخل اسم القسط", "error");
+    if (amount <= 0) return ui.toast("أدخل مبلغاً صحيحاً", "error");
+    if (!dueDate) return ui.toast("أدخل تاريخ الاستحقاق", "error");
+    const remaining = Math.max(amount - paid, 0); const status = paid <= 0 ? "UNPAID" : paid >= amount ? "PAID" : "PARTIAL";
+    const body = { student: { id: Number(studentId) }, title, amount, paidAmount: paid, remainingAmount: remaining, dueDate, status, notes: $("ins_notes").value.trim() };
+    await actions.wrap(async () => { id ? await api.put(`/installments/${id}`, body) : await api.post("/installments", body); ui.closeModal(); await app.refresh(); ui.toast("تم حفظ القسط"); });
+  },
+  async savePayment() {
+    const studentId = $("pay_student").value; const installmentId = $("pay_installment").value; const amount = Number($("pay_amount").value); const date = $("pay_date").value;
+    if (!studentId) return ui.toast("اختر الطالب", "error");
+    if (amount <= 0) return ui.toast("أدخل مبلغاً صحيحاً", "error");
+    if (!date) return ui.toast("أدخل تاريخ الدفع", "error");
+    const body = { studentId: Number(studentId), installmentId: installmentId ? Number(installmentId) : null, amount, paymentDate: date, paymentMethod: $("pay_method").value, receiptNumber: $("pay_receipt").value.trim(), notes: $("pay_notes").value.trim() };
+    await actions.wrap(async () => {
+      const saved = await api.post("/payments", body);
+      ui.closeModal(); await app.refresh(); ui.toast("تم تسجيل الدفعة بنجاح");
+      actions.printReceipt(saved.id);
+    });
+  },
+  async saveTeacher(id) {
+    const full = $("te_full").value.trim();
+    if (!full) return ui.toast("أدخل الاسم الرباعي", "error");
+    const parts = splitName(full);
+    const subjects = Array.from($("te_subjects").selectedOptions).map((o) => ({ id: Number(o.value) }));
+    const body = { teacherCode: id ? byId(state.data.teachers, id)?.teacherCode : `TC-${Date.now()}`, firstName: parts.firstName, lastName: parts.lastName, fullName: full, nationalId: $("te_nid").value.trim(), identityNumber: $("te_identity").value.trim(), phone: $("te_phone").value.trim(), salary: Number($("te_salary").value || 0), address: $("te_address").value.trim(), scheduleNotes: $("te_schedule").value.trim(), subjects };
+    await actions.wrap(async () => { id ? await api.put(`/teachers/${id}`, body) : await api.post("/teachers", body); ui.closeModal(); await app.refresh(); ui.toast("تم حفظ بيانات المعلم"); });
+  },
+  async saveClass() {
+    const name = $("cl_name").value.trim();
+    if (!name) return ui.toast("أدخل اسم الصف", "error");
+    await actions.wrap(async () => { await api.post("/classes", { name, description: $("cl_desc").value.trim() }); ui.closeModal(); await app.refresh(); ui.toast("تم إضافة الصف"); });
+  },
+  async saveSection() {
+    const name = $("se_name").value.trim(); const classId = $("se_class").value;
+    if (!name) return ui.toast("أدخل اسم الشعبة", "error");
+    if (!classId) return ui.toast("اختر الصف", "error");
+    await actions.wrap(async () => { await api.post("/sections", { name, schoolClass: { id: Number(classId) } }); ui.closeModal(); await app.refresh(); ui.toast("تم إضافة الشعبة"); });
+  },
+  async saveClassSubject() {
+    const classId = $("cs_class").value; const subjectId = $("cs_subject").value; const teacherId = $("cs_teacher").value;
+    if (!classId || !subjectId) return ui.toast("اختر الصف والمادة", "error");
+    const body = { schoolClass: { id: Number(classId) }, subject: { id: Number(subjectId) }, teacher: teacherId ? { id: Number(teacherId) } : null };
+    await actions.wrap(async () => { await api.post("/class-subjects", body); ui.closeModal(); await app.refresh(); ui.toast("تم ربط المادة بالصف"); });
+  },
+  async saveSubject(id) {
+    const name = $("sb_name").value.trim();
+    if (!name) return ui.toast("أدخل اسم المادة", "error");
+    const body = { name, code: $("sb_code").value.trim(), creditHours: Number($("sb_hours").value || 1), description: $("sb_desc").value.trim() };
+    await actions.wrap(async () => { id ? await api.put(`/subjects/${id}`, body) : await api.post("/subjects", body); ui.closeModal(); await app.refresh(); ui.toast("تم حفظ المادة"); });
+  },
+  async saveAcademicYear(id) {
+    const name = $("ay_name").value.trim();
+    if (!name) return ui.toast("أدخل اسم السنة الدراسية", "error");
+    const body = { name, startDate: $("ay_start").value || null, endDate: $("ay_end").value || null, currentYear: $("ay_current").value === "true", status: $("ay_status").value };
+    await actions.wrap(async () => { id ? await api.put(`/academic-years/${id}`, body) : await api.post("/academic-years", body); ui.closeModal(); await app.refresh(); ui.toast("تم حفظ السنة الدراسية"); });
+  },
+  async saveAttendance() {
+    const studentId = $("at_student").value; const date = $("at_date").value; const status = $("at_status").value;
+    if (!studentId) return ui.toast("اختر الطالب", "error");
+    if (!date) return ui.toast("أدخل التاريخ", "error");
+    const body = { studentId: Number(studentId), date, status, notes: $("at_notes").value.trim() };
+    await actions.wrap(async () => { await api.post("/attendance", body); ui.closeModal(); await app.refresh(); ui.toast("تم تسجيل الحضور"); });
+  },
+  async saveClassAttendance() {
+    const classId = $("at_class").value; const date = $("at_bulk_date").value;
+    const students = state.data.students.filter((s) => String(studentClassId(s)) === String(classId));
+    if (!classId) return ui.toast("اختر الصف", "error");
+    if (!date) return ui.toast("أدخل التاريخ", "error");
+    if (!students.length) return ui.toast("لا يوجد طلاب في هذا الصف", "error");
+    await actions.wrap(async () => {
+      for (const student of students) {
+        await api.post("/attendance", { studentId: Number(student.id), date, status: $(`at_status_${student.id}`).value, notes: $(`at_notes_${student.id}`).value.trim() });
+      }
+      ui.closeModal(); await app.refresh(); ui.toast("تم تسجيل حضور الصف");
+    });
+  },
+  async saveExam() {
+    const name = $("ex_name").value.trim();
+    if (!name) return ui.toast("أدخل اسم الاختبار", "error");
+    const body = { name, type: $("ex_type").value, academicYear: { id: Number($("ex_year").value) } };
+    await actions.wrap(async () => { await api.post("/exams", body); ui.closeModal(); await app.refresh(); ui.toast("تم إضافة الاختبار"); });
+  },
+  async saveGrade() {
+    const studentId = $("gr_student").value; const subjectId = $("gr_subject").value; const examId = $("gr_exam").value; const score = Number($("gr_score").value);
+    if (!studentId || !subjectId || !examId) return ui.toast("أكمل جميع الحقول المطلوبة", "error");
+    if (isNaN(score) || score < 0 || score > 100) return ui.toast("أدخل درجة صحيحة بين 0 و 100", "error");
+    const body = { studentId: Number(studentId), subjectId: Number(subjectId), examId: Number(examId), examType: byId(state.data.exams, examId)?.name || "اختبار", score };
+    await actions.wrap(async () => { await api.post("/grades", body); ui.closeModal(); await app.refresh(); ui.toast("تم حفظ الدرجة"); });
+  },
+  async saveUser(id) {
+    const username = $("us_username").value.trim(); const password = $("us_password").value; const fullName = $("us_full").value.trim(); const roleId = $("us_role").value;
+    if (!username) return ui.toast("أدخل اسم المستخدم", "error");
+    if (!id && !password) return ui.toast("أدخل كلمة المرور", "error");
+    if (!fullName) return ui.toast("أدخل الاسم الكامل", "error");
+    const body = { username, fullName, enabled: $("us_enabled").value === "true", role: { id: Number(roleId) } };
+    if (password) body.password = password;
+    await actions.wrap(async () => { id ? await api.put(`/users/${id}`, body) : await api.post("/users", body); ui.closeModal(); await app.refresh(); ui.toast("تم حفظ المستخدم"); });
+  },
+  printReceipt(id) {
+    const payment = byId(state.data.payments, id);
+    if (!payment) return ui.toast("لم يتم العثور على الدفعة", "error");
+    printDocument("إيصال قبض", receiptHtml(payment));
+  },
+  async backup() {
+    await actions.wrap(async () => {
+      const blob = new Blob([JSON.stringify(mockDB, null, 2)], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      const stamp = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
+      a.href = url; a.download = `erpschool-backup-${stamp}.txt`;
+      document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+      ui.toast("تم تنزيل النسخة الاحتياطية (عرض تجريبي)");
+    });
+  },
+  exportCsv(type) {
+    let csv = "";
+    if (type === "students") {
+      csv = "id,fullName,nationalId,class,section\n";
+      mockDB.students.forEach(s => csv += `${s.id},${s.fullName},${s.nationalId || ""},${s.section?.schoolClass?.name || ""},${s.section?.name || ""}\n`);
+    } else if (type === "teachers") {
+      csv = "id,fullName,phone,salary\n";
+      mockDB.teachers.forEach(t => csv += `${t.id},${t.fullName},${t.phone || ""},${t.salary || 0}\n`);
+    } else if (type === "installments") {
+      csv = "id,student,title,amount,status\n";
+      mockDB.installments.forEach(i => csv += `${i.id},${i.student?.fullName || ""},${i.title},${i.amount},${i.status}\n`);
+    } else if (type === "payments") {
+      csv = "id,student,amount,date,method\n";
+      mockDB.payments.forEach(p => csv += `${p.id},${p.student?.fullName || ""},${p.amount},${p.paymentDate},${p.paymentMethod}\n`);
+    }
+    const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = `report-${type}.csv`;
+    document.body.appendChild(a); a.click(); a.remove();
+  },
+  printReport(type) {
+    const titles = { students: "تقرير الطلاب", teachers: "تقرير المعلمين", installments: "تقرير الأقساط", payments: "تقرير الدفعات" };
+    const builders = {
+      students: () => {
+        const rows = state.data.students.map((s, index) => `<tr><td>${index + 1}</td><td>${esc(nameOf(s))}</td><td>${esc(s.nationalId || "")}</td><td>${esc(studentClass(s) || "")}</td><td>${esc(studentSection(s) || "")}</td><td>${esc(s.guardianName || "")}</td><td>${esc(s.guardianPhone || s.phone || "")}</td></tr>`).join("");
+        return reportTable(["م", "الطالب", "الرقم الوطني", "الصف", "الشعبة", "ولي الأمر", "الهاتف"], rows);
+      },
+      teachers: () => {
+        const rows = state.data.teachers.map((t, index) => `<tr><td>${index + 1}</td><td>${esc(nameOf(t))}</td><td>${esc(t.nationalId || "")}</td><td>${esc((t.subjects || []).map((s) => s.name).join("، ") || t.specialization || "")}</td><td>${esc(t.phone || "")}</td><td>${money(t.salary)}</td></tr>`).join("");
+        return reportTable(["م", "المعلم", "الرقم الوطني", "المواد", "الهاتف", "الراتب"], rows);
+      },
+      installments: () => {
+        const rows = state.data.installments.map((i, index) => `<tr><td>${index + 1}</td><td>${esc(nameOf(i.student))}</td><td>${esc(i.title || "")}</td><td>${money(i.amount)}</td><td>${money(i.paidAmount)}</td><td>${money(i.remainingAmount ?? Math.max((i.amount || 0) - (i.paidAmount || 0), 0))}</td><td>${esc(i.dueDate || "")}</td><td>${esc(i.status || "")}</td></tr>`).join("");
+        return reportTable(["م", "الطالب", "القسط", "المبلغ", "المدفوع", "المتبقي", "الاستحقاق", "الحالة"], rows);
+      },
+      payments: () => {
+        const rows = state.data.payments.map((p, index) => `<tr><td>${index + 1}</td><td>${esc(nameOf(p.student))}</td><td>${esc(p.installment?.title || "دفعة عامة")}</td><td>${money(p.amount)}</td><td>${esc(p.paymentDate || "")}</td><td>${esc(p.paymentMethod || "")}</td><td>${esc(p.receiptNumber || "")}</td></tr>`).join("");
+        return reportTable(["م", "الطالب", "البند", "المبلغ", "التاريخ", "الطريقة", "الإيصال"], rows);
+      }
+    };
+    const body = `<div class="paper"><div class="head"><div><h1>${titles[type] || "تقرير"}</h1><div class="muted">إدارة المدرسة</div></div><div class="muted">تاريخ الطباعة: ${today()}</div></div>${builders[type] ? builders[type]() : "<p>لا توجد بيانات</p>"}</div>`;
+    printDocument(titles[type] || "تقرير", body);
+  },
+  printPromotionList() {
+    const sourceClassId = window.promotionSourceClass || state.data.classes[0]?.id || "";
+    const candidates = state.data.students.filter((s) => String(studentClassId(s)) === String(sourceClassId)).map((s) => ({ student: s, average: studentAverage(s.id) })).filter((x) => x.average !== null && x.average >= 50);
+    const rows = candidates.map((x) => `<tr><td>${esc(nameOf(x.student))}</td><td>${esc(studentSection(x.student))}</td><td>${x.average.toFixed(1)}</td></tr>`).join("");
+    printDocument("قائمة الطلاب الناجحين", `<div class="paper"><div class="head"><div><h1>قائمة الطلاب الناجحين</h1><div class="muted">ERPSchool</div></div><div class="muted">${today()}</div></div><table><thead><tr><th>الطالب</th><th>الشعبة</th><th>المتوسط</th></tr></thead><tbody>${rows || `<tr><td colspan="3">لا توجد بيانات</td></tr>`}</tbody></table></div>`);
+  },
+  async promotePassed() {
+    const sourceClassId = window.promotionSourceClass || state.data.classes[0]?.id || "";
+    const targetClassId = window.promotionTargetClass || "";
+    const targetSections = state.data.sections.filter((s) => String(s.schoolClass?.id) === String(targetClassId));
+    const targetSectionId = window.promotionTargetSection || targetSections[0]?.id || "";
+    const targetYearId = window.promotionTargetYear || state.data.years.find((y) => y.currentYear)?.id || state.data.years[0]?.id || "";
+    if (!sourceClassId || !targetClassId || !targetSectionId || !targetYearId) return ui.toast("اختر الصف والشعبة والسنة الجديدة", "error");
+    const candidates = state.data.students.filter((s) => String(studentClassId(s)) === String(sourceClassId)).map((s) => ({ student: s, average: studentAverage(s.id) })).filter((x) => x.average !== null && x.average >= 50);
+    if (!candidates.length) return ui.toast("لا يوجد طلاب ناجحون للنقل", "error");
+    if (!confirm(`سيتم نقل ${candidates.length} طالب. هل تريد المتابعة؟`)) return;
+    await actions.wrap(async () => {
+      for (const item of candidates) {
+        const s = item.student; const full = nameOf(s); const parts = splitName(full);
+        await api.put(`/students/${s.id}`, {
+          studentCode: s.studentCode, firstName: s.firstName || parts.firstName, lastName: s.lastName || parts.lastName, fullName: full,
+          nationalId: s.nationalId, birthDate: s.birthDate || null, gender: s.gender || "Male", phone: s.phone || "", email: s.email || "",
+          address: s.address || s.residence || "", residence: s.residence || s.address || "", guardianName: s.guardianName || "", guardianPhone: s.guardianPhone || "",
+          totalFees: feeForClass(targetClassId, targetYearId) || s.totalFees || 0, section: { id: Number(targetSectionId) }, academicYear: { id: Number(targetYearId) }, status: true
+        });
+        for (const grade of state.data.grades.filter((g) => String(g.student?.id) === String(s.id))) {
+          await api.del(`/grades/${grade.id}`);
+        }
+      }
+      await app.refresh(); ui.toast("تم نقل الطلاب الناجحين");
+    });
+  }
+};
+
+window.app = app; window.ui = ui; window.forms = forms; window.actions = actions; window.render = render;
+
+document.addEventListener("click", (event) => {
+  const trigger = event.target.closest("[data-action]");
+  if (!trigger) return;
+  event.preventDefault();
+  const action = trigger.getAttribute("data-action");
+  try { Function(action).call(window); } catch (e) { console.error(e); ui.toast(e.message || "تعذر تنفيذ الأمر", "error"); }
+});
+
+document.addEventListener("DOMContentLoaded", app.init);
+</script>
+</body>
+</html>
