@@ -1,430 +1,820 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Envi | شريكك التقني في رحلة التحول الرقمي</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
-    
-    <style>
-        body {
-            font-family: 'Tajawal', sans-serif;
-            background-color: #FFFFFF;
-        }
-        /* إضافة خاصية التمرير السلس للصفحة */
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 80px; /* تم تعديله ليناسب ارتفاع الشعار الجديد */
-        }
-        .text-gradient {
-            background: linear-gradient(to right, #1E3A8A, #3B82F6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .fade-in {
-            animation: fadeIn 1.5s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .remove-bg {
-            mix-blend-mode: multiply;
-        }
-        .logo-shadow {
-            filter: drop-shadow(2px 4px 6px rgba(10, 37, 64, 0.15));
-        }
-        @keyframes pulse-green {
-            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(34, 197, 94, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
-        }
-        .whatsapp-pulse {
-            animation: pulse-green 2s infinite;
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<title>Envi | شريكك التقني في رحلة التحول الرقمي</title>
 </head>
-<body class="text-slate-700 overflow-x-hidden">
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: #eaf1f7;
+    color: #10243b;
+    font-family: "Tajawal", "Helvetica Neue", Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    direction: rtl;
+  }
+  a { color: #0077B6; text-decoration: none; transition: color .2s ease; }
+  a:hover { color: #023E8A; }
+  input, textarea, button, select { font-family: "Tajawal", sans-serif; }
+  ::selection { background: #0077B6; color: #fff; }
+  @keyframes envi-float { 0%,100% { transform: translate3d(0,0,0); } 50% { transform: translate3d(0,-18px,0); } }
+  @keyframes envi-pulse { 0%,100% { opacity: .35; transform: scale(1); } 50% { opacity: 1; transform: scale(1.35); } }
+  @keyframes envi-sheen { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+</style>
+</helmet>
 
-    <!-- شريط التنقل (Navbar) -->
-    <nav class="bg-white/90 backdrop-blur-md border-b border-slate-100 fixed w-full top-0 z-50 shadow-sm">
-        <div class="container mx-auto px-6 py-2 flex justify-between items-center">
-            <!-- الشعار والنص تحته -->
-            <div class="flex flex-col items-center justify-center">
-                <img src="images/Logo.png" alt="EnVi Logo" class="w-10 h-7 object-contain remove-bg logo-shadow">
-                <div class="flex flex-col items-center leading-tight mt-0.5">
-                    <span class="text-[#0A2540] font-extrabold text-xs">Envi</span>
-                    <span class="text-slate-500 text-[9px] font-medium">للحلول البرمجية</span>
-                </div>
-            </div>
-            
-            <div class="hidden md:flex space-x-6 space-x-reverse text-slate-600 font-medium text-sm">
-                <a href="#home" class="hover:text-[#0A2540] transition">الرئيسية</a>
-                <a href="#work" class="hover:text-[#0A2540] transition">كيف نعمل</a>
-                <a href="#services" class="hover:text-[#0A2540] transition">خدماتنا</a>
-                <a href="#products" class="hover:text-[#0A2540] transition">منتجاتنا</a>
-                <a href="#why" class="hover:text-[#0A2540] transition">لماذا Envi؟</a>
-            </div>
-            
-            <a href="#contact" class="bg-[#0A2540] text-white px-5 py-1.5 rounded-lg font-bold text-sm hover:bg-blue-900 transition shadow-md shadow-blue-900/10">تواصل معنا</a>
+<div style="min-height: 100vh; background: #eaf1f7; direction: rtl;">
+
+  <header style="display: {{ mobileBarDisplay }}; position: fixed; top: 0; right: 0; left: 0; height: 68px; z-index: 60; align-items: center; justify-content: space-between; padding: 0 18px; background: rgba(234,241,247,0.88); backdrop-filter: blur(14px); box-shadow: 0 6px 18px rgba(2,62,138,0.08);">
+    <div style="display: flex; align-items: center; gap: 11px;">
+      <img src="images/Logo.png" alt="Envi" style="height: 44px; width: auto; display: block;" />
+    </div>
+    <button type="button" aria-label="Toggle navigation" onClick="{{ toggleMenu }}" style="width: 46px; height: 46px; border: 0; border-radius: 14px; background: #eaf1f7; box-shadow: 5px 5px 12px rgba(2,62,138,0.14), -5px -5px 12px rgba(255,255,255,0.95); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer;" style-active="box-shadow: inset 4px 4px 9px rgba(2,62,138,0.16), inset -4px -4px 9px rgba(255,255,255,0.9);">
+      <span style="display: block; width: 18px; height: 2px; border-radius: 2px; background: #023E8A;"></span>
+      <span style="display: block; width: 18px; height: 2px; border-radius: 2px; background: #0077B6;"></span>
+      <span style="display: block; width: 18px; height: 2px; border-radius: 2px; background: #023E8A;"></span>
+    </button>
+  </header>
+
+  <div onClick="{{ closeMenu }}" style="{{ backdropStyle }}"></div>
+
+  <aside style="{{ sidebarStyle }}">
+    <div>
+      <div style="display: flex; align-items: center; gap: 14px; padding: 4px 4px 30px 4px;">
+        <img src="images/Logo.png" alt="Envi" style="height: 92px; width: auto; display: block;" />
+        <div style="display: flex; flex-direction: column; gap: 3px;">
+          <span style="font-size: 18px; font-weight: 800; letter-spacing: -0.01em; color: #023E8A; line-height: 1.25;">Envi للحلول البرمجية</span>
         </div>
-    </nav>
+      </div>
 
-    <!-- القسم الرئيسي (Hero Section) -->
-    <header id="home" class="pt-36 pb-16 px-6 relative bg-white">
-        <div class="absolute top-20 left-1/4 w-96 h-96 bg-blue-100/50 rounded-full blur-3xl"></div>
-        
-        <div class="container mx-auto flex flex-col items-center text-center relative z-10">
-            <div class="mb-8 fade-in flex flex-col items-center">
-                <img src="images/Logo.png" alt="EnVi Logo" class="w-[160px] md:w-[180px] h-auto object-contain mb-2 remove-bg logo-shadow">
-                <div class="flex flex-col items-center leading-tight">
-                    <span class="text-[#0A2540] font-extrabold text-xl">Envi</span>
-                    <span class="text-slate-500 text-sm font-medium">للحلول البرمجية</span>
-                </div>
-            </div>
+      <nav style="display: flex; flex-direction: column; gap: 10px;">
+        <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="4">
+          <button type="button" onClick="{{ item.go }}" style="{{ item.style }}">
+            <span style="{{ item.dotStyle }}"></span>
+            <span style="flex: 1; text-align: right;">{{ item.label }}</span>
+            <span style="{{ item.arrowStyle }}">←</span>
+          </button>
+        </sc-for>
+      </nav>
 
-            <div class="max-w-3xl fade-in">
-                <span class="inline-block bg-blue-50 text-blue-700 text-xs font-bold px-4 py-1 rounded-full mb-5">شريكك التقني في رحلة التحول الرقمي</span>
-                <h2 class="text-2xl md:text-4xl font-extrabold text-[#0A2540] mb-5 leading-snug">
-                    نبني حلولًا برمجية تدفع <br>
-                    <span class="text-gradient">أعمالك إلى الأمام</span>
-                </h2>
-                <p class="text-base text-slate-500 mb-8 leading-relaxed max-w-2xl mx-auto">
-                    من الفكرة الأولى وحتى إطلاق المشروع، نعمل معك في كل خطوة لنحوّل احتياجاتك إلى حلول تقنية فعّالة تساعدك على النمو وتحقيق أهدافك.
-                </p>
-                <div class="flex flex-wrap gap-3 justify-center">
-                    <a href="#services" class="bg-[#0A2540] text-white px-6 py-2.5 rounded-lg font-bold hover:bg-blue-900 transition text-base shadow-lg shadow-blue-900/20">اكتشف خدماتنا</a>
-                    <a href="#contact" class="border border-slate-300 text-[#0A2540] px-6 py-2.5 rounded-lg font-bold hover:bg-slate-50 transition text-base">ابدأ رحلتك الرقمية</a>
-                </div>
-            </div>
+      <div style="margin-top: 28px; padding: 16px; border-radius: 18px; background: #eaf1f7; box-shadow: inset 5px 5px 12px rgba(2,62,138,0.11), inset -5px -5px 12px rgba(255,255,255,0.95);">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+          <span style="width: 8px; height: 8px; border-radius: 50%; background: #0077B6; animation: envi-pulse 2.4s ease-in-out infinite;"></span>
+          <span style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #4a627d; font-weight: 600;">كل الأنظمة تعمل</span>
         </div>
-    </header>
+        <div style="font-size: 22px; font-weight: 800; color: #023E8A; line-height: 1;">99.99<span style="font-size: 13px; color: #0077B6;">% نسبة التشغيل</span></div>
+        <div style="font-size: 11.5px; color: #4a627d; margin-top: 6px; line-height: 1.5;">نتائج آخر 90 يوماً لجميع عملائنا.</div>
+      </div>
+    </div>
 
-    <!-- قسم من نحن (Intro) -->
-    <section class="py-16 px-6 bg-slate-50 border-y border-slate-100">
-        <div class="container mx-auto max-w-4xl text-center">
-            <h2 class="text-2xl font-extrabold text-[#0A2540] mb-5">لسنا مجرد شركة تطوير برمجيات…</h2>
-            <p class="text-base text-slate-600 leading-loose">
-                في <span class="font-bold text-[#0A2540]">Envi للحلول البرمجية</span> نؤمن أن نجاح أي مشروع يبدأ بفهم احتياجات العميل قبل كتابة أول سطر برمجي. لذلك نرافقك في جميع مراحل المشروع، بدءًا من تحليل فكرتك، مرورًا بالتخطيط والتصميم والتطوير، وصولًا إلى الاختبار والإطلاق والدعم المستمر.
+    <div style="display: flex; flex-direction: column; gap: 14px; padding-top: 26px;">
+      <span style="font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #566f8a; font-weight: 600;">تابعنا</span>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <a href="https://www.facebook.com/share/1ARUv6Qwvt/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Envi on Facebook" style="width: 38px; height: 38px; border-radius: 12px; background: #eaf1f7; box-shadow: 4px 4px 10px rgba(2,62,138,0.13), -4px -4px 10px rgba(255,255,255,0.95); display: flex; align-items: center; justify-content: center; color: #0077B6; transition: box-shadow .22s ease, transform .22s ease, color .22s ease;" style-hover="box-shadow: inset 3px 3px 8px rgba(2,62,138,0.16), inset -3px -3px 8px rgba(255,255,255,0.9); color: #023E8A; transform: translateY(1px);">
+          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/envi.software?stkn=cDZ0bXBxcmI3cmwy&utm_source=qr" target="_blank" rel="noopener" aria-label="Envi on Instagram" style="width: 38px; height: 38px; border-radius: 12px; background: #eaf1f7; box-shadow: 4px 4px 10px rgba(2,62,138,0.13), -4px -4px 10px rgba(255,255,255,0.95); display: flex; align-items: center; justify-content: center; color: #0077B6; transition: box-shadow .22s ease, transform .22s ease, color .22s ease;" style-hover="box-shadow: inset 3px 3px 8px rgba(2,62,138,0.16), inset -3px -3px 8px rgba(255,255,255,0.9); color: #023E8A; transform: translateY(1px);">
+          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.13 1.38A5.9 5.9 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13.67.66 1.34 1.07 2.13 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32A6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.41a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@envi2026_?_r=1&_t=ZS-99UQtqoDot3" target="_blank" rel="noopener" aria-label="Envi on TikTok" style="width: 38px; height: 38px; border-radius: 12px; background: #eaf1f7; box-shadow: 4px 4px 10px rgba(2,62,138,0.13), -4px -4px 10px rgba(255,255,255,0.95); display: flex; align-items: center; justify-content: center; color: #0077B6; transition: box-shadow .22s ease, transform .22s ease, color .22s ease;" style-hover="box-shadow: inset 3px 3px 8px rgba(2,62,138,0.16), inset -3px -3px 8px rgba(255,255,255,0.9); color: #023E8A; transform: translateY(1px);">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        </a>
+      </div>
+      <div style="font-size: 10.5px; color: #566f8a; line-height: 1.6;">© 2026 Envi للحلول البرمجية<br />طرابلس · ليبيا</div>
+    </div>
+  </aside>
+
+  <main style="{{ mainStyle }}">
+
+    <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+      <div>
+        <section style="position: relative; overflow: hidden; border-radius: 34px; background: #eaf1f7; box-shadow: 16px 16px 40px rgba(2,62,138,0.13), -14px -14px 34px rgba(255,255,255,0.95); padding: clamp(28px, 5vw, 74px); margin-bottom: clamp(64px, 9vw, 130px);">
+          <canvas ref="{{ canvasRef }}" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0.95;"></canvas>
+          <div style="position: absolute; top: -80px; left: -60px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, rgba(0,119,182,0.16), rgba(0,119,182,0)); animation: envi-float 9s ease-in-out infinite; pointer-events: none;"></div>
+          <div style="position: relative; z-index: 2; max-width: 760px; pointer-events: none;">
+            <div data-reveal="1" style="display: inline-flex; align-items: center; gap: 9px; padding: 8px 15px 8px 11px; border-radius: 999px; background: #eaf1f7; box-shadow: inset 3px 3px 8px rgba(2,62,138,0.13), inset -3px -3px 8px rgba(255,255,255,0.95); margin-bottom: 26px; opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease;">
+              <span style="width: 7px; height: 7px; border-radius: 50%; background: #0077B6; animation: envi-pulse 2.2s ease-in-out infinite;"></span>
+              <span style="font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase; font-weight: 700; color: #0077B6;">شريكك التقني في رحلة التحول الرقمي</span>
+            </div>
+            <h1 data-reveal="1" style="font-weight: 800; font-size: clamp(32px, 6vw, 68px); line-height: 1.1; letter-spacing: -0.02em; color: #023E8A; margin: 0 0 22px; text-wrap: pretty; opacity: 0; transform: translateY(26px); transition: opacity .8s ease .08s, transform .8s ease .08s;">
+              نبني حلولًا برمجية تدفع <br><span style="color: #0077B6;">أعمالك إلى الأمام</span>
+            </h1>
+            <p data-reveal="1" style="font-size: clamp(15px, 1.5vw, 19px); line-height: 1.75; color: #4a627d; max-width: 620px; margin: 0 0 34px; text-wrap: pretty; opacity: 0; transform: translateY(26px); transition: opacity .8s ease .16s, transform .8s ease .16s;">
+              من الفكرة الأولى وحتى إطلاق المشروع، نعمل معك في كل خطوة لنحوّل احتياجاتك إلى حلول تقنية فعّالة تساعدك على النمو وتحقيق أهدافك.
             </p>
-        </div>
-    </section>
-
-    <!-- قسم كيف نعمل (How We Work) -->
-    <section id="work" class="py-20 px-6 bg-white">
-        <div class="container mx-auto">
-            <div class="text-center mb-12">
-                <span class="text-blue-600 font-bold tracking-wide text-sm">منهجية العمل</span>
-                <h2 class="text-3xl font-extrabold text-[#0A2540] mt-2">كيف نعمل؟</h2>
-                <p class="text-slate-500 mt-3 max-w-2xl mx-auto text-sm">نتبع منهجية واضحة ومدروسة لضمان تسليم منتج يلبي توقعاتك ويتجاوزها.</p>
+            <div data-reveal="1" style="display: flex; flex-wrap: wrap; gap: 14px; pointer-events: auto; opacity: 0; transform: translateY(26px); transition: opacity .8s ease .24s, transform .8s ease .24s;">
+              <button type="button" onClick="{{ goContact }}" style="border: 0; cursor: pointer; padding: 16px 30px; border-radius: 16px; background: linear-gradient(145deg,#0088cf,#0077B6); color: #fff; font-size: 16px; font-weight: 700; box-shadow: 8px 8px 20px rgba(2,62,138,0.28), -5px -5px 14px rgba(255,255,255,0.75); transition: transform .22s ease, box-shadow .22s ease;" style-hover="transform: translateY(-2px); box-shadow: 10px 12px 26px rgba(2,62,138,0.32), -6px -6px 16px rgba(255,255,255,0.8);" style-active="transform: translateY(1px); box-shadow: inset 5px 5px 12px rgba(2,36,80,0.35), inset -3px -3px 10px rgba(255,255,255,0.18);">ابدأ رحلتك الرقمية</button>
+              <button type="button" onClick="{{ goPlatform }}" style="border: 0; cursor: pointer; padding: 16px 28px; border-radius: 16px; background: #eaf1f7; color: #023E8A; font-size: 16px; font-weight: 700; box-shadow: 7px 7px 18px rgba(2,62,138,0.14), -7px -7px 18px rgba(255,255,255,0.95); transition: transform .22s ease, box-shadow .22s ease;" style-hover="transform: translateY(-2px);" style-active="box-shadow: inset 5px 5px 12px rgba(2,62,138,0.16), inset -5px -5px 12px rgba(255,255,255,0.9); transform: translateY(1px);">اكتشف خدماتنا</button>
             </div>
+          </div>
+        </section>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <!-- خطوة 1 -->
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 relative">
-                    <span class="absolute top-2 left-2 text-3xl font-black text-slate-200">01</span>
-                    <div class="relative z-10">
-                        <h3 class="text-base font-bold text-[#0A2540] mb-1.5 mt-2">تحليل احتياجاتك</h3>
-                        <p class="text-slate-500 leading-relaxed text-xs">نبدأ بالاستماع إلى فكرتك وفهم طبيعة عملك وأهدافك والتحديات التي تواجهها، ثم نحولها إلى متطلبات واضحة وخطة عمل مدروسة.</p>
-                    </div>
-                </div>
-                <!-- خطوة 2 -->
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 relative">
-                    <span class="absolute top-2 left-2 text-3xl font-black text-slate-200">02</span>
-                    <div class="relative z-10">
-                        <h3 class="text-base font-bold text-[#0A2540] mb-1.5 mt-2">التخطيط وتصميم الحل</h3>
-                        <p class="text-slate-500 leading-relaxed text-xs">نصمم هيكل النظام وتجربة المستخدم وقاعدة البيانات بما يضمن سهولة الاستخدام وقابلية التوسع مستقبلًا.</p>
-                    </div>
-                </div>
-                <!-- خطوة 3 -->
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 relative">
-                    <span class="absolute top-2 left-2 text-3xl font-black text-slate-200">03</span>
-                    <div class="relative z-10">
-                        <h3 class="text-base font-bold text-[#0A2540] mb-1.5 mt-2">التطوير</h3>
-                        <p class="text-slate-500 leading-relaxed text-xs">يقوم فريقنا ببناء النظام باستخدام أحدث التقنيات البرمجية مع التركيز على الأداء، والأمان، وجودة الكود، لضمان منتج موثوق وقابل للنمو.</p>
-                    </div>
-                </div>
-                <!-- خطوة 4 -->
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 relative">
-                    <span class="absolute top-2 left-2 text-3xl font-black text-slate-200">04</span>
-                    <div class="relative z-10">
-                        <h3 class="text-base font-bold text-[#0A2540] mb-1.5 mt-2">الاختبار وضمان الجودة</h3>
-                        <p class="text-slate-500 leading-relaxed text-xs">قبل تسليم أي مشروع، نجري اختبارات شاملة للتأكد من أن جميع الوظائف تعمل بكفاءة وأن النظام يقدم أفضل تجربة ممكنة للمستخدم.</p>
-                    </div>
-                </div>
-                <!-- خطوة 5 -->
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 relative">
-                    <span class="absolute top-2 left-2 text-3xl font-black text-slate-200">05</span>
-                    <div class="relative z-10">
-                        <h3 class="text-base font-bold text-[#0A2540] mb-1.5 mt-2">الإطلاق</h3>
-                        <p class="text-slate-500 leading-relaxed text-xs">نساعدك في نشر النظام وتشغيله وتهيئة بيئة العمل لضمان انطلاق مشروعك بأفضل صورة.</p>
-                    </div>
-                </div>
-                <!-- خطوة 6 -->
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 relative">
-                    <span class="absolute top-2 left-2 text-3xl font-black text-slate-200">06</span>
-                    <div class="relative z-10">
-                        <h3 class="text-base font-bold text-[#0A2540] mb-1.5 mt-2">الدعم والتطوير المستمر</h3>
-                        <p class="text-slate-500 leading-relaxed text-xs">لا تنتهي علاقتنا مع العميل عند التسليم، بل نقدم الدعم الفني والصيانة والتحديثات، ونساعدك على تطوير النظام مع نمو أعمالك.</p>
-                    </div>
+        <section data-reveal="1" style="margin-bottom: clamp(64px, 9vw, 130px); opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease;">
+          <div style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #566f8a; font-weight: 700; margin-bottom: 22px;">شركاء النجاح</div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px;">
+            <sc-for list="{{ logos }}" as="logo" hint-placeholder-count="5">
+              <div style="padding: 20px 16px; border-radius: 18px; background: #eaf1f7; box-shadow: 6px 6px 16px rgba(2,62,138,0.10), -6px -6px 16px rgba(255,255,255,0.95); text-align: center; font-weight: 700; font-size: 15px; color: #4a627d;">{{ logo }}</div>
+            </sc-for>
+          </div>
+        </section>
+
+        <section style="margin-bottom: clamp(64px, 9vw, 130px);">
+          <div data-reveal="1" style="max-width: 620px; margin-bottom: 46px; opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease;">
+            <div style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #0077B6; font-weight: 700; margin-bottom: 14px;">لماذا Envi؟</div>
+            <h2 style="font-weight: 800; font-size: clamp(28px, 3.6vw, 44px); letter-spacing: -0.02em; line-height: 1.2; color: #023E8A; margin: 0 0 16px; text-wrap: pretty;">لأننا لا نقدم برنامجًا جاهزًا للجميع.</h2>
+            <p style="font-size: 16px; line-height: 1.75; color: #4a627d; margin: 0;">بل نصمم حلولًا تناسب احتياجاتك الفعلية ونرافقك لتحقيق النجاح المستدام. نؤمن أن نجاح أي مشروع يبدأ بفهم احتياجات العميل قبل كتابة أول سطر برمجي.</p>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(16px, 2vw, 26px);">
+            <sc-for list="{{ features }}" as="f" hint-placeholder-count="4">
+              <div data-reveal="1" style="padding: 30px 28px; border-radius: 26px; background: #eaf1f7; box-shadow: 10px 10px 26px rgba(2,62,138,0.11), -10px -10px 26px rgba(255,255,255,0.95); transition: transform .3s ease, box-shadow .3s ease, opacity .7s ease; opacity: 0; transform: translateY(30px);" style-hover="transform: translateY(-5px); box-shadow: 14px 16px 34px rgba(2,62,138,0.15), -12px -12px 30px rgba(255,255,255,0.98);">
+                <div style="width: 48px; height: 48px; border-radius: 15px; background: #eaf1f7; box-shadow: inset 4px 4px 10px rgba(2,62,138,0.14), inset -4px -4px 10px rgba(255,255,255,0.95); display: flex; align-items: center; justify-content: center; margin-bottom: 22px; font-weight: 800; font-size: 16px; color: #0077B6;">{{ f.tag }}</div>
+                <h3 style="font-size: 20px; font-weight: 700; color: #023E8A; margin: 0 0 11px; letter-spacing: -0.01em;">{{ f.title }}</h3>
+                <p style="font-size: 15px; line-height: 1.75; color: #4a627d; margin: 0;">{{ f.body }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+
+        <section data-reveal="1" style="margin-bottom: clamp(64px, 9vw, 130px); padding: 40px; border-radius: 26px; background: #eaf1f7; box-shadow: 12px 12px 30px rgba(2,62,138,0.12), -10px -10px 26px rgba(255,255,255,0.95); display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between; opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease;">
+            <div style="max-width: 560px;">
+                <div style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #0077B6; font-weight: 700; margin-bottom: 14px;">منتجاتنا الجاهزة</div>
+                <h3 style="font-weight: 800; font-size: clamp(22px, 3vw, 30px); letter-spacing: -0.02em; color: #023E8A; margin: 0 0 12px;">نظام إدارة المدارس ERPSchool</h3>
+                <p style="font-size: 15px; line-height: 1.75; color: #4a627d; margin: 0 0 20px;">نظام متكامل لإدارة كافة شؤون المدارس، من تسجيل الطلاب والشؤون المالية إلى إدارة الموظفين والدرجات والجداول، مصمم لتسهيل العمليات الإدارية ورفع كفاءة العمل.</p>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <a href="erp-demo-app/" target="_blank" style="text-decoration: none; padding: 14px 24px; border-radius: 14px; background: #eaf1f7; color: #023E8A; font-weight: 700; box-shadow: 6px 6px 14px rgba(2,62,138,0.14), -6px -6px 14px rgba(255,255,255,0.9);">معاينة النظام (تجريبي)</a>
+                    <button type="button" onClick="{{ goContact }}" style="border: 0; cursor: pointer; padding: 14px 24px; border-radius: 14px; background: #0077B6; color: #fff; font-weight: 700; box-shadow: 6px 6px 14px rgba(2,62,138,0.22);">اطلب النظام الآن</button>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- قسم خدماتنا (Services) -->
-    <section id="services" class="py-20 px-6 bg-slate-50 border-y border-slate-100">
-        <div class="container mx-auto">
-            <div class="text-center mb-12">
-                <span class="text-blue-600 font-bold tracking-wide text-sm">خدماتنا</span>
-                <h2 class="text-3xl font-extrabold text-[#0A2540] mt-2">حلول تقنية متكاملة</h2>
-                <p class="text-slate-500 mt-3 max-w-2xl mx-auto text-sm">نقدم باقة شاملة من الخدمات المصممة لتلبية احتياجات أعمالك المختلفة.</p>
+            <div style="position: relative; width: 100%; max-width: 300px; height: 200px; border-radius: 20px; overflow: hidden; background: url('images/erpschool.jpg') center/cover; box-shadow: inset 6px 6px 14px rgba(2,62,138,0.16), inset -6px -6px 14px rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center;">
+                <div style="position: absolute; inset: 0; background: linear-gradient(160deg, rgba(2,62,138,0.10), rgba(2,62,138,0.55));"></div>
+                <span style="position: relative; color: #ffffff; font-weight: 800; font-size: 26px; letter-spacing: 0.01em; text-shadow: 0 2px 10px rgba(2,36,80,0.55); direction: ltr;">ERPSchool</span>
             </div>
+        </section>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <!-- خدمة 1 -->
-                <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition group">
-                    <div class="text-blue-600 mb-3 group-hover:scale-110 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h12M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m-9 3h10.5" /></svg>
-                    </div>
-                    <h3 class="text-base font-bold text-[#0A2540] mb-1.5">تطوير الأنظمة الإدارية المخصصة</h3>
-                    <p class="text-slate-500 leading-relaxed text-xs">نبني أنظمة ERP وإدارية متكاملة مصممة خصيصاً لتلبية احتياجات مؤسستك وتبسيط سير عملك.</p>
-                </div>
-                <!-- خدمة 2 -->
-                <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition group">
-                    <div class="text-blue-600 mb-3 group-hover:scale-110 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25M6.75 17.25L1.5 12l5.25-5.25M14.25 4.5l-4.5 15" /></svg>
-                    </div>
-                    <h3 class="text-base font-bold text-[#0A2540] mb-1.5">تصميم وتطوير مواقع الويب الاحترافية</h3>
-                    <p class="text-slate-500 leading-relaxed text-xs">صناعة مواقع إنترنت سريعة، آمنة، ومتجاوبة تعكس هوية علامتك التجارية وتوفر تجربة مستخدم استثنائية.</p>
-                </div>
-                <!-- خدمة 3 -->
-                <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition group">
-                    <div class="text-blue-600 mb-3 group-hover:scale-110 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" /></svg>
-                    </div>
-                    <h3 class="text-base font-bold text-[#0A2540] mb-1.5">تطوير تطبيقات الويب</h3>
-                    <p class="text-slate-500 leading-relaxed text-xs">بناء تطبيقات ويب متقدمة تعمل عبر المتصفحات بكفاءة عالية، تجمع بين الوظيفية والمرونة وسهولة الوصول.</p>
-                </div>
-                <!-- خدمة 4 -->
-                <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition group">
-                    <div class="text-blue-600 mb-3 group-hover:scale-110 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 3.156a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" /></svg>
-                    </div>
-                    <h3 class="text-base font-bold text-[#0A2540] mb-1.5">أتمتة العمليات والإجراءات</h3>
-                    <p class="text-slate-500 leading-relaxed text-xs">تحويل المهام اليدوية المتكررة إلى عمليات آلية توفّر الوقت، تقلل الأخطاء، وتعزز الإنتاجية.</p>
-                </div>
-                <!-- خدمة 5 -->
-                <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition group">
-                    <div class="text-blue-600 mb-3 group-hover:scale-110 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                    </div>
-                    <h3 class="text-base font-bold text-[#0A2540] mb-1.5">تصميم قواعد البيانات وربط الأنظمة</h3>
-                    <p class="text-slate-500 leading-relaxed text-xs">هيكلة قواعد البيانات وربط الأنظمة المختلفة لضمان تدفق المعلومات بسلاسة وموثوقية.</p>
-                </div>
-                <!-- خدمة 6 -->
-                <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition group">
-                    <div class="text-blue-600 mb-3 group-hover:scale-110 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" /></svg>
-                    </div>
-                    <h3 class="text-base font-bold text-[#0A2540] mb-1.5">تطوير حلول خاصة تلائم طبيعة كل نشاط</h3>
-                    <p class="text-slate-500 leading-relaxed text-xs">نبتكر حلولاً برمجية غير تقليدية مصممة من الصفر لتلبي متطلبات فريدة لا تغطيها الأنظمة الجاهزة.</p>
-                </div>
+        <section style="margin-bottom: clamp(64px, 9vw, 130px);">
+          <div data-reveal="1" style="max-width: 620px; margin-bottom: 52px; opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease;">
+            <div style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #0077B6; font-weight: 700; margin-bottom: 14px;">منهجية العمل</div>
+            <h2 style="font-weight: 800; font-size: clamp(28px, 3.6vw, 44px); letter-spacing: -0.02em; line-height: 1.2; color: #023E8A; margin: 0; text-wrap: pretty;">كيف نعمل؟</h2>
+          </div>
+          <div style="position: relative; padding-right: clamp(26px, 4vw, 44px); border-right: 2px solid rgba(0,119,182,0.18); display: flex; flex-direction: column; gap: clamp(34px, 5vw, 62px);">
+            <sc-for list="{{ timeline }}" as="t" hint-placeholder-count="5">
+              <div data-reveal="1" style="position: relative; opacity: 0; transform: translateY(30px); transition: opacity .75s ease, transform .75s ease;">
+                <span style="position: absolute; right: clamp(-33px, -4vw, -51px); top: 6px; width: 16px; height: 16px; border-radius: 50%; background: #eaf1f7; box-shadow: 3px 3px 7px rgba(2,62,138,0.2), -2px -2px 6px rgba(255,255,255,0.95); display: flex; align-items: center; justify-content: center;">
+                  <span style="width: 6px; height: 6px; border-radius: 50%; background: #0077B6;"></span>
+                </span>
+                <div style="font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #0077B6; font-weight: 700; margin-bottom: 10px;">{{ t.when }}</div>
+                <h3 style="font-size: clamp(20px, 2.2vw, 26px); font-weight: 700; color: #023E8A; margin: 0 0 12px; letter-spacing: -0.01em; text-wrap: pretty;">{{ t.title }}</h3>
+                <p style="font-size: 15.5px; line-height: 1.8; color: #4a627d; margin: 0; max-width: 620px; text-wrap: pretty;">{{ t.body }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </section>
 
-                <!-- خدمة 7: Odoo -->
-                <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition group">
-                    <div class="text-blue-600 mb-3 group-hover:scale-110 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 6.087c.054.166.081.34.081.518 0 .961-.62 1.789-1.488 2.093-.17.054-.346.081-.526.081-.96 0-1.788-.62-2.092-1.488a2.234 2.234 0 0 1-.081-.526c0-.96.62-1.788 1.488-2.092.17-.054.346-.081.526-.081.96 0 1.788.62 2.092 1.488Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 15.5c.276.054.562.081.853.081.961 0 1.789-.62 2.093-1.488.054-.17.081-.346.081-.526 0-.96-.62-1.788-1.488-2.092a2.234 2.234 0 0 0-.526-.081c-.96 0-1.788.62-2.092 1.488a2.234 2.234 0 0 0-.081.526c0 .96.62 1.788 1.488 2.092Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm0 0c-1.243 0-2.25 1.007-2.25 2.25S10.757 6.75 12 6.75s2.25-1.007 2.25-2.25S13.243 2.25 12 2.25Z" /></svg>
-                    </div>
-                    <h3 class="text-base font-bold text-[#0A2540] mb-1.5">إنشاء وتخصيص نظام Odoo</h3>
-                    <p class="text-slate-500 leading-relaxed text-xs">نقدم خدمات تنصيب، إعداد، وتخصيص نظام Odoo ليتناسب مع كافة احتياجات مؤسستك المالية، الإدارية، والموارد البشرية.</p>
+        <section style="margin-bottom: clamp(64px, 9vw, 120px);">
+          <div data-reveal="1" style="max-width: 620px; margin-bottom: 40px; opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease;">
+            <div style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #0077B6; font-weight: 700; margin-bottom: 14px;">أسئلة شائعة</div>
+            <h2 style="font-weight: 800; font-size: clamp(28px, 3.6vw, 44px); letter-spacing: -0.02em; line-height: 1.2; color: #023E8A; margin: 0;">أكثر ما يسأل عنه عملاؤنا</h2>
+          </div>
+          <div data-reveal="1" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px; opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease;">
+            <sc-for list="{{ faqs }}" as="q" hint-placeholder-count="5">
+              <div style="border-radius: 20px; background: #eaf1f7; box-shadow: 8px 8px 20px rgba(2,62,138,0.10), -8px -8px 20px rgba(255,255,255,0.95); overflow: hidden;">
+                <button type="button" onClick="{{ q.toggle }}" style="width: 100%; border: 0; background: transparent; cursor: pointer; display: flex; align-items: center; gap: 18px; padding: 22px 24px; text-align: right;">
+                  <span style="flex: 1; font-size: clamp(15px, 1.7vw, 17.5px); font-weight: 700; color: #023E8A;">{{ q.question }}</span>
+                  <span style="{{ q.iconStyle }}">+</span>
+                </button>
+                <div style="{{ q.bodyStyle }}">
+                  <p style="margin: 0; padding: 0 24px 24px; font-size: 15px; line-height: 1.75; color: #4a627d; max-width: 720px;">{{ q.answer }}</p>
                 </div>
+              </div>
+            </sc-for>
+          </div>
+        </section>
 
-                <!-- خدمة 8: CBL -->
-                <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition group">
-                    <div class="text-blue-600 mb-3 group-hover:scale-110 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" /></svg>
+        <section data-reveal="1" style="border-radius: 30px; padding: clamp(30px, 4.5vw, 60px); background: linear-gradient(140deg,#023E8A,#0077B6); box-shadow: 14px 14px 34px rgba(2,62,138,0.28), -10px -10px 26px rgba(255,255,255,0.7); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 28px; opacity: 0; transform: translateY(30px); transition: opacity .75s ease, transform .75s ease;">
+          <div style="max-width: 560px;">
+            <h2 style="font-size: clamp(24px, 3.2vw, 38px); font-weight: 800; line-height: 1.3; color: #ffffff; margin: 0 0 14px; text-wrap: pretty;">هل لديك فكرة؟</h2>
+            <p style="font-size: 16px; line-height: 1.75; color: #dceafb; margin: 0;">سواء كنت ترغب في إنشاء نظام إداري، أو موقع إلكتروني، أو منصة رقمية، فإن فريق Envi جاهز لتحويل فكرتك إلى منتج احترافي يخدم أعمالك اليوم ويواكب تطورها في المستقبل.</p>
+          </div>
+          <button type="button" onClick="{{ goContact }}" style="border: 0; cursor: pointer; padding: 17px 32px; border-radius: 16px; background: #ffffff; color: #023E8A; font-size: 16px; font-weight: 700; box-shadow: 8px 8px 20px rgba(1,26,58,0.3); transition: transform .22s ease;" style-hover="transform: translateY(-2px);" style-active="transform: translateY(1px);">تواصل معنا</button>
+        </section>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isPlatform }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <section style="margin-bottom: clamp(56px, 8vw, 110px);">
+          <div data-reveal="1" style="max-width: 780px; opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease;">
+            <div style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #0077B6; font-weight: 700; margin-bottom: 16px;">خدماتنا</div>
+            <h1 style="font-weight: 800; font-size: clamp(32px, 5vw, 60px); letter-spacing: -0.02em; line-height: 1.2; color: #023E8A; margin: 0 0 20px; text-wrap: pretty;">حلول تقنية متكاملة لأعمالك</h1>
+            <p style="font-size: clamp(15px, 1.5vw, 18px); line-height: 1.75; color: #4a627d; margin: 0; max-width: 640px; text-wrap: pretty;">نقدم باقة شاملة من الخدمات المصممة لتلبية احتياجات أعمالك المختلفة، من تطوير الأنظمة الإدارية إلى تطبيقات الجوال ودمج تقنيات السحابة.</p>
+          </div>
+        </section>
+
+        <section style="margin-bottom: clamp(56px, 8vw, 110px); display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(18px, 2.4vw, 30px);">
+          <sc-for list="{{ modules }}" as="m" hint-placeholder-count="4">
+            <div data-reveal="1" style="border-radius: 28px; overflow: hidden; background: #eaf1f7; box-shadow: 12px 12px 30px rgba(2,62,138,0.12), -10px -10px 26px rgba(255,255,255,0.95); opacity: 0; transform: translateY(30px); transition: opacity .75s ease, transform .75s ease, box-shadow .3s ease;" style-hover="box-shadow: 16px 18px 38px rgba(2,62,138,0.16), -12px -12px 30px rgba(255,255,255,0.98);">
+              <div role="img" aria-label="{{ m.title }} preview" style="{{ m.imgStyle }}"></div>
+              <div style="padding: 28px;">
+                <div style="font-size: 10.5px; letter-spacing: 0.15em; text-transform: uppercase; color: #0077B6; font-weight: 700; margin-bottom: 12px;">{{ m.kicker }}</div>
+                <h3 style="font-size: 22px; font-weight: 700; color: #023E8A; margin: 0 0 12px;">{{ m.title }}</h3>
+                <p style="font-size: 15px; line-height: 1.75; color: #4a627d; margin: 0 0 20px;">{{ m.body }}</p>
+                <div style="display: flex; flex-direction: column; gap: 9px;">
+                  <sc-for list="{{ m.points }}" as="p" hint-placeholder-count="3">
+                    <div style="display: flex; align-items: flex-start; gap: 10px;">
+                      <span style="width: 6px; height: 6px; border-radius: 50%; background: #0077B6; margin-top: 10px; flex: 0 0 auto;"></span>
+                      <span style="font-size: 14px; line-height: 1.65; color: #3d566f;">{{ p }}</span>
                     </div>
-                    <h3 class="text-base font-bold text-[#0A2540] mb-1.5">مواقع مطابقة لشروط CBL</h3>
-                    <p class="text-slate-500 leading-relaxed text-xs">تصميم وبرمجة مواقع إلكترونية تتوافق تماماً مع شروط ومتطلبات CBL، لضمان جاهزية الموقع للاعتمادات الرسمية والبنكية.</p>
+                  </sc-for>
                 </div>
-
-                <!-- خدمة 9: تطبيقات الجوال -->
-                <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition group">
-                    <div class="text-blue-600 mb-3 group-hover:scale-110 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg>
-                    </div>
-                    <h3 class="text-base font-bold text-[#0A2540] mb-1.5">تطوير تطبيقات الجوال</h3>
-                    <p class="text-slate-500 leading-relaxed text-xs">بناء تطبيقات احترافية لأنظمة iOS و Android تقدم أداءً عالياً وتجربة مستخدم سلسة وممتازة تواكب أعمالك.</p>
-                </div>
-
-                <!-- خدمة 10: وغيرها -->
-                <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition group">
-                    <div class="text-blue-600 mb-3 group-hover:scale-110 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z" /></svg>
-                    </div>
-                    <h3 class="text-base font-bold text-[#0A2540] mb-1.5">خدمات تقنية متنوعة (وغيرها)</h3>
-                    <p class="text-slate-500 leading-relaxed text-xs">نقدم حلولاً برمجية أخرى تشمل الاستشارات التقنية، التسويق الإلكتروني، وخدمات السحابة (Cloud) لتبسيط وتطوير بيئة عملك.</p>
-                </div>
-
+              </div>
             </div>
-        </div>
-    </section>
+          </sc-for>
+        </section>
 
-    <!-- قسم منتجاتنا (Products) -->
-    <section id="products" class="py-20 px-6 bg-white">
-        <div class="container mx-auto">
-            <div class="text-center mb-12">
-                <span class="text-blue-600 font-bold tracking-wide text-sm">منتجاتنا</span>
-                <h2 class="text-3xl font-extrabold text-[#0A2540] mt-2">حلول جاهزة تعمل فوراً</h2>
-                <p class="text-slate-500 mt-3 max-w-2xl mx-auto text-sm">نقدم أنظمة برمجية جاهزة تم اختبارها وتطويرها بأعلى معايير الجودة لتلبية احتياجات قطاعات الأعمال المختلفة.</p>
-            </div>
+        <section style="margin-bottom: clamp(56px, 8vw, 110px);">
+          <h2 data-reveal="1" style="font-weight: 800; font-size: clamp(24px, 3.2vw, 38px); letter-spacing: -0.02em; color: #023E8A; margin: 0 0 34px; opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease;">تقنياتنا ومعاييرنا.</h2>
+          <div data-reveal="1" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease;">
+            <sc-for list="{{ specs }}" as="s" hint-placeholder-count="6">
+              <div style="padding: 24px; border-radius: 20px; background: #eaf1f7; box-shadow: inset 5px 5px 12px rgba(2,62,138,0.10), inset -5px -5px 12px rgba(255,255,255,0.95);">
+                <div style="font-size: 10.5px; letter-spacing: 0.15em; text-transform: uppercase; color: #566f8a; font-weight: 700; margin-bottom: 10px;">{{ s.label }}</div>
+                <div style="font-size: 16.5px; font-weight: 700; color: #023E8A; line-height: 1.5;">{{ s.value }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+      </div>
+    </sc-if>
 
-            <div class="max-w-xl mx-auto">
-                <!-- المنتج الأول: ERPSchool (متاح) -->
-                <div class="bg-slate-50 p-5 rounded-xl border-2 border-blue-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition group relative overflow-hidden">
-                    <span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-full">متاح الآن</span>
-                    <div class="text-blue-600 mb-3 group-hover:scale-110 transition mt-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" /></svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-[#0A2540] mb-2">نظام إدارة المدارس <span class="text-blue-600">ERPSchool</span></h3>
-                    <p class="text-slate-500 leading-relaxed mb-4 text-xs">نظام متكامل لإدارة كافة شؤون المدارس، من تسجيل الطلاب والشؤون المالية إلى إدارة الموظفين والدرجات والجداول، مصمم لتسهيل العمليات الإدارية ورفع كفاءة العمل.</p>
-                    
-                    <!-- ================= التعديل هنا ================= -->
-                    <div class="flex flex-wrap gap-2">
-                        <a href="erp-demo.html" target="_blank" class="bg-blue-600 text-white px-5 py-2 rounded-lg font-bold hover:bg-blue-700 transition inline-block text-sm shadow-sm">معاينة النظام (تجريبي)</a>
-                        <a href="#contact" class="bg-[#0A2540] text-white px-5 py-2 rounded-lg font-bold hover:bg-blue-900 transition inline-block text-sm">اطلب النظام الآن</a>
-                    </div>
-                    <!-- ================================================= -->
-                    
-                </div>
-            </div>
-        </div>
-    </section>
+    <sc-if value="{{ isCompany }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <section style="margin-bottom: clamp(56px, 8vw, 110px);">
+          <div data-reveal="1" style="max-width: 780px; opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease;">
+            <div style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #0077B6; font-weight: 700; margin-bottom: 16px;">من نحن</div>
+            <h1 style="font-weight: 800; font-size: clamp(32px, 5vw, 60px); letter-spacing: -0.02em; line-height: 1.2; color: #023E8A; margin: 0 0 20px; text-wrap: pretty;">لسنا مجرد شركة تطوير برمجيات…</h1>
+            <p style="font-size: clamp(15px, 1.5vw, 18px); line-height: 1.75; color: #4a627d; margin: 0; max-width: 640px; text-wrap: pretty;">في Envi للحلول البرمجية نؤمن أن نجاح أي مشروع يبدأ بفهم احتياجات العميل قبل كتابة أول سطر برمجي. لذلك نرافقك في جميع مراحل المشروع، بدءًا من تحليل فكرتك، مرورًا بالتخطيط والتصميم والتطوير، وصولًا إلى الاختبار والإطلاق والدعم المستمر.</p>
+          </div>
+        </section>
 
-    <!-- قسم لماذا تختار Envi (Why Us) -->
-    <section id="why" class="py-20 px-6 bg-slate-50 border-y border-slate-100">
-        <div class="container mx-auto">
-            <div class="text-center mb-12">
-                <span class="text-blue-600 font-bold tracking-wide text-sm">لماذا تختار Envi؟</span>
-                <h2 class="text-3xl font-extrabold text-[#0A2540] mt-2">لأننا لا نقدم برنامجًا جاهزًا للجميع</h2>
-                <p class="text-slate-500 mt-3 max-w-2xl mx-auto text-sm">بل نصمم حلولًا تناسب احتياجاتك الفعلية ونرافقك لتحقيق النجاح المستدام.</p>
+        <section style="margin-bottom: clamp(56px, 8vw, 110px); display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: clamp(16px, 2vw, 26px);">
+          <sc-for list="{{ values }}" as="v" hint-placeholder-count="3">
+            <div data-reveal="1" style="padding: 30px 28px; border-radius: 26px; background: #eaf1f7; box-shadow: 10px 10px 26px rgba(2,62,138,0.11), -10px -10px 26px rgba(255,255,255,0.95); opacity: 0; transform: translateY(30px); transition: opacity .75s ease, transform .75s ease;">
+              <div style="font-weight: 800; font-size: 14px; color: #0077B6; margin-bottom: 18px; letter-spacing: 0.08em;">{{ v.no }}</div>
+              <h3 style="font-size: 20px; font-weight: 700; color: #023E8A; margin: 0 0 12px;">{{ v.title }}</h3>
+              <p style="font-size: 15px; line-height: 1.75; color: #4a627d; margin: 0;">{{ v.body }}</p>
             </div>
+          </sc-for>
+        </section>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-                <div class="flex items-start gap-3 bg-white p-4 rounded-lg border border-slate-100 shadow-sm">
-                    <span class="text-blue-600 mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
-                    <div>
-                        <h3 class="font-bold text-[#0A2540] mb-1 text-sm">تحليل دقيق للاحتياجات</h3>
-                        <p class="text-slate-500 text-xs">نحلل احتياجات مشروعك بدقة لنضمن أن الحل المطروح يلامس مشكلتك الحقيقية.</p>
-                    </div>
-                </div>
-                <div class="flex items-start gap-3 bg-white p-4 rounded-lg border border-slate-100 shadow-sm">
-                    <span class="text-blue-600 mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
-                    <div>
-                        <h3 class="font-bold text-[#0A2540] mb-1 text-sm">حلول قابلة للتوسع</h3>
-                        <p class="text-slate-500 text-xs">نصمم بنية برمجية مرقة تنمو مع نمو أعمالك دون الحاجة لإعادة بناء النظام من الصفر.</p>
-                    </div>
-                </div>
-                <div class="flex items-start gap-3 bg-white p-4 rounded-lg border border-slate-100 shadow-sm">
-                    <span class="text-blue-600 mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
-                    <div>
-                        <h3 class="font-bold text-[#0A2540] mb-1 text-sm">تقنيات حديثة وآمنة</h3>
-                        <p class="text-slate-500 text-xs">نستخدم أحدث الأطر البرمجية ونطبق معايير الأمان السيبراني لحماية بياناتك.</p>
-                    </div>
-                </div>
-                <div class="flex items-start gap-3 bg-white p-4 rounded-lg border border-slate-100 shadow-sm">
-                    <span class="text-blue-600 mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
-                    <div>
-                        <h3 class="font-bold text-[#0A2540] mb-1 text-sm">الالتزام بالجودة والمواعيد</h3>
-                        <p class="text-slate-500 text-xs">نلتزم بمعايير الجودة العالمية ونسلم المشاريع في الأوقات المتفق عليها دون تأخير.</p>
-                    </div>
-                </div>
-                <div class="flex items-start gap-3 bg-white p-4 rounded-lg border border-slate-100 shadow-sm">
-                    <span class="text-blue-600 mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
-                    <div>
-                        <h3 class="font-bold text-[#0A2540] mb-1 text-sm">دعم فني مستمر</h3>
-                        <p class="text-slate-500 text-xs">نوفر دعماً فنياً وصيانة دورية بعد الإطلاق لضمان استقرار عملك على المدى الطويل.</p>
-                    </div>
-                </div>
-                <div class="flex items-start gap-3 bg-white p-4 rounded-lg border border-slate-100 shadow-sm">
-                    <span class="text-blue-600 mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
-                    <div>
-                        <h3 class="font-bold text-[#0A2540] mb-1 text-sm">علاقة طويلة الأمد</h3>
-                        <p class="text-slate-500 text-xs">نركز على بناء شراكات تقنية ناجحة مستمرة، وليس مجرد علاقة عميل لمرة واحدة.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        <section style="margin-bottom: clamp(56px, 8vw, 110px);">
+          <h2 data-reveal="1" style="font-weight: 800; font-size: clamp(24px, 3.2vw, 38px); letter-spacing: -0.02em; color: #023E8A; margin: 0 0 44px; opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease;">محطات في مسيرتنا.</h2>
+          <div style="position: relative; padding-right: clamp(26px, 4vw, 44px); border-right: 2px solid rgba(0,119,182,0.18); display: flex; flex-direction: column; gap: clamp(30px, 4vw, 52px);">
+            <sc-for list="{{ milestones }}" as="m" hint-placeholder-count="5">
+              <div data-reveal="1" style="position: relative; display: flex; flex-wrap: wrap; gap: 6px 28px; align-items: baseline; opacity: 0; transform: translateY(28px); transition: opacity .75s ease, transform .75s ease;">
+                <span style="position: absolute; right: clamp(-33px, -4vw, -51px); top: 5px; width: 16px; height: 16px; border-radius: 50%; background: #eaf1f7; box-shadow: 3px 3px 7px rgba(2,62,138,0.2), -2px -2px 6px rgba(255,255,255,0.95); display: flex; align-items: center; justify-content: center;">
+                  <span style="width: 6px; height: 6px; border-radius: 50%; background: #0077B6;"></span>
+                </span>
+                <div style="font-size: 22px; font-weight: 800; color: #0077B6; min-width: 86px;">{{ m.year }}</div>
+                <p style="font-size: 15.5px; line-height: 1.75; color: #3d566f; margin: 0; max-width: 620px; flex: 1 1 260px; text-wrap: pretty;">{{ m.body }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+      </div>
+    </sc-if>
 
-    <!-- قسم الرؤية والرسالة (Vision & Mission) -->
-    <section class="py-20 px-6 bg-white">
-        <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl">
-            <div class="bg-slate-50 p-6 rounded-xl shadow-sm border-t-4 border-blue-600 text-center">
-                <div class="inline-block p-3 bg-blue-100 rounded-full mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                </div>
-                <h3 class="text-lg font-bold text-[#0A2540] mb-2">رؤيتنا</h3>
-                <p class="text-slate-600 leading-relaxed text-xs">أن نكون الشريك التقني الأول للشركات والمؤسسات التي تسعى إلى تطوير أعمالها من خلال حلول برمجية مبتكرة وموثوقة.</p>
-            </div>
-            <div class="bg-slate-50 p-6 rounded-xl shadow-sm border-t-4 border-slate-400 text-center">
-                <div class="inline-block p-3 bg-slate-100 rounded-full mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h12M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m-9 3h10.5" /></svg>
-                </div>
-                <h3 class="text-lg font-bold text-[#0A2540] mb-2">رسالتنا</h3>
-                <p class="text-slate-600 leading-relaxed text-xs">تقديم حلول برمجية احترافية تجمع بين الجودة، والابتكار، وسهولة الاستخدام، بما يساعد عملاءنا على تحسين الأداء وتحقيق النمو المستدام.</p>
-            </div>
-        </div>
-    </section>
+    <sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <section style="margin-bottom: clamp(44px, 6vw, 80px);">
+          <div data-reveal="1" style="max-width: 720px; opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease;">
+            <div style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #0077B6; font-weight: 700; margin-bottom: 16px;">تواصل معنا</div>
+            <h1 style="font-weight: 800; font-size: clamp(32px, 5vw, 58px); letter-spacing: -0.02em; line-height: 1.2; color: #023E8A; margin: 0 0 20px; text-wrap: pretty;">أخبرنا بفكرتك.</h1>
+            <p style="font-size: clamp(15px, 1.5vw, 18px); line-height: 1.75; color: #4a627d; margin: 0;">نرد خلال يوم عمل واحد، عادة بأسئلة استيضاحية لنفهم متطلباتك بدقة بدلاً من إرسال كتيب ترويجي.</p>
+          </div>
+        </section>
 
-    <!-- قسم التواصل (Contact) -->
-    <section id="contact" class="py-20 px-6 bg-slate-50 border-t border-slate-100">
-        <div class="container mx-auto text-center max-w-2xl">
-            <h2 class="text-3xl font-extrabold text-[#0A2540] mb-3">هل لديك فكرة؟</h2>
-            <p class="text-slate-500 mb-8 text-base leading-relaxed">
-                سواء كنت ترغب في إنشاء نظام إداري، أو موقع إلكتروني، أو منصة رقمية، فإن فريق <span class="font-bold text-[#0A2540]">Envi</span> جاهز لتحويل فكرتك إلى منتج احترافي يخدم أعمالك اليوم ويواكب تطورها في المستقبل.
-                <br>
-                <span class="text-[#0A2540] font-semibold mt-3 block">ابدأ رحلتك الرقمية معنا… وسنتولى تحويل فكرتك إلى واقع.</span>
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-3 justify-center items-center mt-8">
-                <a href="mailto:info@envi.ly" class="bg-[#0A2540] text-white px-6 py-3 rounded-lg font-bold text-base hover:bg-blue-900 transition shadow-lg shadow-blue-900/20 inline-flex items-center gap-2 w-full sm:w-auto justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                    راسلنا عبر البريد
-                </a>
-                
-                <a href="https://wa.me/218915897498" target="_blank" class="bg-green-500 text-white px-6 py-3 rounded-lg font-bold text-base hover:bg-green-600 transition shadow-lg shadow-green-500/20 inline-flex items-center gap-2 w-full sm:w-auto justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-                    تواصل عبر واتساب
-                </a>
-            </div>
-        </div>
-    </section>
+        <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(20px, 3vw, 40px); align-items: start; margin-bottom: clamp(40px, 6vw, 80px);">
+          <form novalidate="" onSubmit="{{ onSubmit }}" data-reveal="1" style="padding: clamp(24px, 3vw, 40px); border-radius: 28px; background: #eaf1f7; box-shadow: 12px 12px 30px rgba(2,62,138,0.12), -10px -10px 26px rgba(255,255,255,0.95); display: flex; flex-direction: column; gap: 20px; opacity: 0; transform: translateY(30px); transition: opacity .75s ease, transform .75s ease;">
+            <label style="display: flex; flex-direction: column; gap: 9px; text-align: right;">
+              <span style="font-size: 12.5px; font-weight: 700; color: #4a627d;">الاسم الكامل</span>
+              <input type="text" value="{{ form.name }}" onChange="{{ onName }}" placeholder="" style="{{ nameInputStyle }}" />
+              <span style="{{ nameErrStyle }}">{{ errors.name }}</span>
+            </label>
+            <label style="display: flex; flex-direction: column; gap: 9px; text-align: right;">
+              <span style="font-size: 12.5px; font-weight: 700; color: #4a627d;">ما هي فكرتك أو احتياجك؟</span>
+              <textarea rows="5" value="{{ form.message }}" onChange="{{ onMessage }}" placeholder="" style="{{ msgInputStyle }}"></textarea>
+              <span style="{{ msgErrStyle }}">{{ errors.message }}</span>
+            </label>
+            <button type="submit" style="border: 0; cursor: pointer; padding: 17px 28px; border-radius: 16px; background: linear-gradient(145deg,#0088cf,#0077B6); color: #fff; font-size: 16px; font-weight: 700; box-shadow: 8px 8px 20px rgba(2,62,138,0.26), -5px -5px 14px rgba(255,255,255,0.7); transition: transform .22s ease, box-shadow .22s ease;" style-hover="transform: translateY(-2px);" style-active="transform: translateY(1px); box-shadow: inset 5px 5px 12px rgba(2,36,80,0.35);">{{ submitLabel }}</button>
+            <div style="{{ successStyle }}">تم فتح واتساب برسالتك — أرسلها لنا وسنرد عليك في أقرب وقت. إذا لم يفتح واتساب تلقائياً، تواصل معنا على +218915897498.</div>
+          </form>
 
-    <!-- التذييل (Footer) -->
-    <footer class="bg-white py-6 px-6 border-t border-slate-200">
-        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
-            <!-- الشعار والنص تحته في التذييل -->
-            <div class="flex flex-col items-center gap-1 mb-3 md:mb-0">
-                <img src="images/Logo.png" alt="EnVi Logo" class="w-10 h-7 object-contain remove-bg">
-                <div class="flex flex-col items-center leading-tight mt-0.5">
-                    <span class="text-[#0A2540] font-bold text-xs">Envi</span>
-                    <span class="text-slate-500 text-[9px]">للحلول البرمجية</span>
-                </div>
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <sc-for list="{{ contacts }}" as="c" hint-placeholder-count="3">
+              <div data-reveal="1" style="padding: 26px; border-radius: 22px; background: #eaf1f7; box-shadow: 9px 9px 22px rgba(2,62,138,0.11), -9px -9px 22px rgba(255,255,255,0.95); opacity: 0; transform: translateY(28px); transition: opacity .75s ease, transform .75s ease; text-align: right;">
+                <div style="font-size: 11.5px; letter-spacing: 0.15em; text-transform: uppercase; color: #566f8a; font-weight: 700; margin-bottom: 10px;">{{ c.label }}</div>
+                <div style="font-size: 17px; font-weight: 700; color: #023E8A; margin-bottom: 8px; direction: ltr; text-align: right;">{{ c.value }}</div>
+                <div style="font-size: 14px; color: #4a627d; line-height: 1.65;">{{ c.note }}</div>
+              </div>
+            </sc-for>
+            <div data-reveal="1" style="padding: 26px; border-radius: 22px; background: #eaf1f7; box-shadow: inset 5px 5px 12px rgba(2,62,138,0.11), inset -5px -5px 12px rgba(255,255,255,0.95); opacity: 0; transform: translateY(28px); transition: opacity .75s ease, transform .75s ease; text-align: right;">
+              <div style="font-size: 11.5px; letter-spacing: 0.15em; text-transform: uppercase; color: #566f8a; font-weight: 700; margin-bottom: 12px;">الأمان والخصوصية</div>
+              <p style="margin: 0; font-size: 14px; line-height: 1.75; color: #4a627d;">نضمن أعلى معايير الأمان السيبراني وحماية البيانات. يمكننا توفير استضافة سحابية آمنة أو على خوادم خاصة بحسب متطلباتك.</p>
             </div>
-            <p class="text-slate-400 text-xs">&copy; 2026 EnVi Software Solutions. جميع الحقوق محفوظة.</p>
-        </div>
+          </div>
+        </section>
+      </div>
+    </sc-if>
+
+    <footer style="margin-top: clamp(40px, 6vw, 80px); padding-top: 34px; border-top: 1px solid rgba(2,62,138,0.10); display: flex; flex-wrap: wrap; gap: 18px 40px; align-items: center; justify-content: space-between;">
+      <div style="font-size: 13px; color: #566f8a;">© 2026 EnVi للحلول البرمجية — مصمم لخدمة أعمالك.</div>
+      <div style="display: flex; flex-wrap: wrap; gap: 22px;">
+        <a href="#" style="font-size: 13px; color: #4a627d;">سياسة الخصوصية</a>
+        <a href="#" style="font-size: 13px; color: #4a627d;">الشروط والأحكام</a>
+        <a href="https://wa.me/218915897498" target="_blank" style="font-size: 13px; color: #4a627d;">واتساب</a>
+      </div>
     </footer>
+  </main>
 
-    <!-- زر واتساب العائم (Floating WhatsApp Button) -->
-    <a href="https://wa.me/218915897498" target="_blank" class="fixed bottom-6 left-6 z-50 bg-green-500 text-white p-3.5 rounded-full shadow-lg hover:bg-green-600 transition-transform hover:scale-110 whatsapp-pulse">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-        </svg>
-    </a>
+  <a href="https://wa.me/218915897498" target="_blank" aria-label="WhatsApp" style="position: fixed; left: 22px; bottom: 22px; z-index: 80; width: 50px; height: 50px; border: 0; border-radius: 16px; background: #22c55e; color: white; font-size: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 7px 7px 18px rgba(2,62,138,0.16), -6px -6px 16px rgba(255,255,255,0.95); transition: transform .25s ease;" style-hover="transform: scale(1.1);">
+    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+  </a>
+</div>
 
+</x-dc>
+
+
+
+<script type="text/x-dc" data-dc-script data-props="{&quot;heroParticles&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;particleDensity&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:68,&quot;min&quot;:20,&quot;max&quot;:140,&quot;step&quot;:2,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;faqFirstOpen&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;}}">
+class Component extends DCLogic {
+  canvasRef = React.createRef();
+
+  modules = [
+    { kicker: "خدمة", title: "تطوير الأنظمة الإدارية المخصصة", img: "images/admin-systems.jpg", imgHeight: "220px", body: "نصمم أنظمة إدارية تناسب طبيعة عملك، سواء كانت حلولاً جاهزة نبدأ منها بسرعة أو أنظمة مخصصة نبنيها من الصفر وفق متطلباتك بالكامل.", points: ["أنظمة جاهزة قابلة للتخصيص", "أنظمة مخصصة تُبنى وفق احتياجك", "تكامل مع أدواتك وربط الفروع"] },
+    { kicker: "خدمة", title: "تطوير التطبيقات", img: "images/28635627f4e835c63dd2887df59f236e.jpg", body: "صناعة تطبيقات جوال سريعة وآمنة ومتجاوبة تعكس هوية علامتك التجارية وتخدم عملاءك في كل مكان.", points: ["تصميم واجهات احترافية", "تطبيقات iOS و Android", "أداء عالٍ وتجربة سلسة"] },
+    { kicker: "خدمة", title: "تصميم المواقع", img: "images/220d84f37e41365d6db4e8464dcd3cb2.jpg", body: "تصميم وبرمجة مواقع إلكترونية عصرية ومتجاوبة تعكس هوية علامتك التجارية وتوافق شروط CBL.", points: ["تصميم متجاوب مع كل الشاشات", "مواقع متوافقة مع CBL", "متاجر إلكترونية ولوحات تحكم"] },
+    { kicker: "خدمة", title: "أتمتة العمليات", img: "images/4aacb234b82e4dc6fec5fdd0bd2902ec.jpg", body: "تحويل المهام اليدوية المتكررة إلى عمليات آلية توفّر الوقت، تقلل الأخطاء، وتعزز الإنتاجية.", points: ["ربط الأنظمة وقواعد البيانات", "أتمتة الإجراءات المالية", "تكامل واجهات API"] },
+    { kicker: "خدمة", title: "أنظمة Odoo والاستشارات", img: "images/c4dac37cc66ce37755b20708318c3d27.jpg", fit: "contain", imgHeight: "230px", body: "إعداد وتخصيص نظام Odoo، بالإضافة إلى الاستشارات التقنية وحلول السحابة لبيئة عملك.", points: ["تخصيص Odoo بالكامل", "استشارات تقنية", "حلول السحابة (Cloud)"] }
+  ];
+
+  state = {
+    page: "home",
+    menuOpen: false,
+    isMobile: false,
+    openFaq: this.props.faqFirstOpen === false ? -1 : 0,
+    showTop: false,
+    form: { name: "", message: "" },
+    errors: {},
+    submitted: false
+  };
+
+  componentDidMount() {
+    this.syncViewport();
+    window.addEventListener("resize", this.syncViewport);
+    document.addEventListener("scroll", this.onScroll, true);
+    document.addEventListener("visibilitychange", this.onVisibility);
+    this.initReveal();
+    this.startCanvas();
+    this.revealPoll = setInterval(this.revealInView, 350);
+    try {
+      this.mo = new MutationObserver(() => {
+        this.revealInView();
+        if (this.state.page === "home" && !this.started) this.startCanvas();
+      });
+      this.mo.observe(document.body, { childList: true, subtree: true });
+    } catch (err) { this.mo = null; }
+  }
+
+  scroller() {
+    const b = document.body, d = document.documentElement;
+    if (b && b.scrollHeight > b.clientHeight + 4 && getComputedStyle(b).overflowY !== "visible") return b;
+    if (d && d.scrollHeight > d.clientHeight + 4) return d;
+    return d || b;
+  }
+
+  onVisibility = () => {
+    if (!document.hidden) { this.revealInView(); this.startCanvas(); }
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    try {
+      const pp = prevProps || {}, ps = prevState || {};
+      if (ps.page !== this.state.page) this.afterPageChange();
+      if (pp.heroParticles !== this.props.heroParticles || pp.particleDensity !== this.props.particleDensity) {
+        if (this.state.page === "home") this.startCanvas(); else this.stopCanvas();
+      }
+    } catch (err) {}
+  }
+
+  afterPageChange = () => {
+    this.initReveal();
+    if (this.state.page === "home") this.startCanvas();
+    else this.stopCanvas();
+  };
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.syncViewport);
+    document.removeEventListener("scroll", this.onScroll, true);
+    document.removeEventListener("visibilitychange", this.onVisibility);
+    this.stopCanvas();
+    if (this.revealPoll) clearInterval(this.revealPoll);
+    if (this.mo) this.mo.disconnect();
+    if (this.observer) this.observer.disconnect();
+  }
+
+  syncViewport = () => {
+    const isMobile = window.innerWidth <= 1000;
+    if (isMobile !== this.state.isMobile) {
+      this.setState({ isMobile, menuOpen: false });
+    }
+    this.sizeCanvas();
+  };
+
+  onScroll = () => {
+    const el = this.scroller();
+    const y = Math.max(window.scrollY || 0, el ? el.scrollTop : 0);
+    const show = y > 420;
+    if (show !== this.state.showTop) this.setState({ showTop: show });
+    this.revealInView();
+  };
+
+  scrollTop = () => {
+    const el = this.scroller();
+    if (el && el.scrollTo) el.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  reveal(el) {
+    el.style.opacity = "1";
+    el.style.transform = "none";
+  }
+
+  revealInView = () => {
+    const el = this.scroller();
+    const h = (el && el.clientHeight) || window.innerHeight || 800;
+    document.querySelectorAll("[data-reveal]").forEach((n) => {
+      if (n.style.opacity === "1") return;
+      const r = n.getBoundingClientRect();
+      if (r.top < h * 0.96 && r.bottom > -40) this.reveal(n);
+    });
+  };
+
+  revealAll = () => {
+    document.querySelectorAll("[data-reveal]").forEach((n) => this.reveal(n));
+  };
+
+  initReveal() {
+    if (this.observer) this.observer.disconnect();
+    const run = () => {
+      const nodes = document.querySelectorAll("[data-reveal]");
+      if (typeof IntersectionObserver === "function") {
+        try {
+          this.observer = new IntersectionObserver((entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                this.reveal(e.target);
+                this.observer.unobserve(e.target);
+              }
+            });
+          }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+          nodes.forEach((n) => this.observer.observe(n));
+        } catch (err) { this.observer = null; }
+      }
+      this.revealInView();
+    };
+    run();
+    setTimeout(run, 60);
+    setTimeout(this.revealInView, 350);
+    setTimeout(this.revealAll, 1400);
+  }
+
+  startCanvas() {
+    this.stopCanvas();
+    if (this.props.heroParticles === false) return;
+    const init = () => {
+      const cv = this.canvasRef.current;
+      if (!cv || this.started) return;
+      this.started = true;
+      this.sizeCanvas();
+      const base = this.props.particleDensity ?? 68;
+      const count = window.innerWidth < 700 ? Math.round(base * 0.5) : base;
+      this.nodes = Array.from({ length: count }, () => ({
+        x: Math.random(), y: Math.random(),
+        vx: (Math.random() - 0.5) * 0.0009,
+        vy: (Math.random() - 0.5) * 0.0009,
+        r: 1 + Math.random() * 1.8
+      }));
+      this.pointer = { x: -1, y: -1 };
+      cv.parentElement.addEventListener("mousemove", this.onPointer);
+      cv.parentElement.addEventListener("mouseleave", this.offPointer);
+      this.tick();
+      this.rafSeen = false;
+      setTimeout(() => { if (!this.rafSeen && !this.timer) this.timer = setInterval(this.tick, 33); }, 400);
+    };
+    init();
+    setTimeout(init, 80);
+  }
+
+  stopCanvas() {
+    if (this.raf) cancelAnimationFrame(this.raf);
+    if (this.timer) clearInterval(this.timer);
+    this.raf = null;
+    this.timer = null;
+    this.started = false;
+    const cv = this.canvasRef.current;
+    if (cv && cv.parentElement) {
+      cv.parentElement.removeEventListener("mousemove", this.onPointer);
+      cv.parentElement.removeEventListener("mouseleave", this.offPointer);
+    }
+  }
+
+  onPointer = (e) => {
+    const cv = this.canvasRef.current;
+    if (!cv) return;
+    const r = cv.getBoundingClientRect();
+    this.pointer = { x: (e.clientX - r.left) / r.width, y: (e.clientY - r.top) / r.height };
+  };
+
+  offPointer = () => { this.pointer = { x: -1, y: -1 }; };
+
+  sizeCanvas() {
+    const cv = this.canvasRef.current;
+    if (!cv) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const r = cv.getBoundingClientRect();
+    cv.width = Math.max(1, Math.round(r.width * dpr));
+    cv.height = Math.max(1, Math.round(r.height * dpr));
+  }
+
+  tick = () => {
+    const cv = this.canvasRef.current;
+    if (!cv || !this.nodes) { this.started = false; return; }
+    const ctx = cv.getContext("2d");
+    const W = cv.width, H = cv.height;
+    ctx.clearRect(0, 0, W, H);
+
+    this.nodes.forEach((n) => {
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < 0) n.x = 1; if (n.x > 1) n.x = 0;
+      if (n.y < 0) n.y = 1; if (n.y > 1) n.y = 0;
+    });
+
+    const linkDist = 0.155;
+    for (let i = 0; i < this.nodes.length; i++) {
+      for (let j = i + 1; j < this.nodes.length; j++) {
+        const a = this.nodes[i], b = this.nodes[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const d = Math.hypot(dx, dy);
+        if (d < linkDist) {
+          ctx.strokeStyle = "rgba(0,119,182," + (0.3 * (1 - d / linkDist)).toFixed(3) + ")";
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(a.x * W, a.y * H);
+          ctx.lineTo(b.x * W, b.y * H);
+          ctx.stroke();
+        }
+      }
+    }
+
+    if (this.pointer && this.pointer.x >= 0) {
+      this.nodes.forEach((n) => {
+        const d = Math.hypot(n.x - this.pointer.x, n.y - this.pointer.y);
+        if (d < 0.22) {
+          ctx.strokeStyle = "rgba(2,62,138," + (0.42 * (1 - d / 0.22)).toFixed(3) + ")";
+          ctx.lineWidth = 1.2;
+          ctx.beginPath();
+          ctx.moveTo(n.x * W, n.y * H);
+          ctx.lineTo(this.pointer.x * W, this.pointer.y * H);
+          ctx.stroke();
+        }
+      });
+    }
+
+    this.nodes.forEach((n) => {
+      ctx.fillStyle = "rgba(0,119,182,0.55)";
+      ctx.beginPath();
+      ctx.arc(n.x * W, n.y * H, n.r * 1.4, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    if (!this.timer) {
+      this.raf = requestAnimationFrame(() => { this.rafSeen = true; this.tick(); });
+    }
+  };
+
+  go = (page) => () => {
+    this.setState({ page, menuOpen: false }, this.afterPageChange);
+    const el = this.scroller();
+    if (el && el.scrollTo) el.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  toggleMenu = () => this.setState((s) => ({ menuOpen: !s.menuOpen }));
+  closeMenu = () => this.setState({ menuOpen: false });
+  toggleFaq = (i) => () => this.setState((s) => ({ openFaq: s.openFaq === i ? -1 : i }));
+
+  setField = (k) => (e) => {
+    const v = e.target.value;
+    this.setState((s) => ({ form: Object.assign({}, s.form, { [k]: v }), submitted: false }));
+  };
+
+  validate(form) {
+    const errors = {};
+    if (!form.name.trim()) errors.name = "الرجاء إدخال اسمك.";
+    else if (form.name.trim().length < 2) errors.name = "الاسم قصير جداً.";
+    if (!form.message.trim()) errors.message = "جملة أو جملتان كافيتان.";
+    else if (form.message.trim().length < 12) errors.message = "أضف تفاصيل أكثر (12 حرفاً على الأقل).";
+    return errors;
+  }
+
+  onSubmit = (e) => {
+    e.preventDefault();
+    const errors = this.validate(this.state.form);
+    const ok = Object.keys(errors).length === 0;
+    if (ok) {
+      const f = this.state.form;
+      const text = "السلام عليكم، أنا " + f.name.trim() + "\n\nفكرتي / احتياجي:\n" + f.message.trim();
+      const url = "https://wa.me/218915897498?text=" + encodeURIComponent(text);
+      window.open(url, "_blank");
+    }
+    this.setState({
+      errors,
+      submitted: ok,
+      form: ok ? { name: "", message: "" } : this.state.form
+    });
+  };
+
+  input(hasError) {
+    return "width: 100%; padding: 15px 17px; border: 0; border-radius: 15px; background: #eaf1f7; font-size: 15px; color: #10243b; outline: none; resize: vertical; text-align: right; direction: rtl;"
+      + " box-shadow: inset 5px 5px 11px rgba(2,62,138,0.13), inset -5px -5px 11px rgba(255,255,255,0.95)"
+      + (hasError ? ", 0 0 0 1.5px rgba(199,62,74,0.55)" : "") + ";";
+  }
+  err(msg) {
+    return "font-size: 12.5px; color: #c73e4a; min-height: 0; text-align: right; display: " + (msg ? "block" : "none") + ";";
+  }
+
+  renderVals() {
+    const s = this.state;
+    const mobile = s.isMobile;
+
+    const navDef = [
+      { key: "home", label: "الرئيسية" },
+      { key: "platform", label: "خدماتنا" },
+      { key: "company", label: "من نحن" },
+      { key: "contact", label: "تواصل معنا" }
+    ];
+
+    const navItems = navDef.map((n) => {
+      const active = s.page === n.key;
+      return {
+        label: n.label,
+        go: this.go(n.key),
+        style: "display: flex; align-items: center; gap: 12px; width: 100%; border: 0; cursor: pointer; padding: 14px 16px; border-radius: 15px; background: #eaf1f7; text-align: right;"
+          + " font-size: 15px; font-weight: " + (active ? "700" : "500") + ";"
+          + " color: " + (active ? "#023E8A" : "#4a627d") + ";"
+          + " transition: box-shadow .25s ease, color .25s ease, transform .25s ease;"
+          + " box-shadow: " + (active
+            ? "inset 5px 5px 11px rgba(2,62,138,0.15), inset -5px -5px 11px rgba(255,255,255,0.95)"
+            : "5px 5px 12px rgba(2,62,138,0.11), -5px -5px 12px rgba(255,255,255,0.95)") + ";",
+        dotStyle: "width: 7px; height: 7px; border-radius: 50%; flex: 0 0 auto; background: " + (active ? "#0077B6" : "rgba(0,119,182,0.28)") + ";",
+        arrowStyle: "font-size: 14px; color: #0077B6; opacity: " + (active ? "1" : "0") + ";"
+      };
+    });
+
+    const faqData = [
+      { question: "هل تقدمون حلولاً جاهزة أم مخصصة؟", answer: "نقدم كلا النوعين. لدينا أنظمة جاهزة مثل نظام إدارة المدارس ERPSchool، كما نمتلك خبرة في بناء أنظمة مخصصة بالكامل تلبي احتياجات مؤسستك الخاصة." },
+      { question: "ما هي مدة تنفيذ المشروع؟", answer: "تختلف المدة حسب حجم وتعقيد المشروع، ولكن بعد مرحلة التحليل الأولي، نقدم لك جدولاً زمنياً واضحاً ونلتزم به." },
+      { question: "هل توافقون مواقعكم على شروط CBL؟", answer: "نعم، نقوم بتصميم وبرمجة مواقع إلكترونية تتوافق تماماً مع شروط ومتطلبات CBL لضمان جاهزية الموقع للاعتمادات الرسمية والبنكية." },
+      { question: "هل تقدمون الدعم بعد إطلاق المشروع؟", answer: "بالتأكيد، لا تنتهي علاقتنا عند التسليم، بل نوفر دعماً فنياً وصيانة دورية وتحديثات لضمان استقرار عملك." },
+      { question: "هل تعملون على نظام Odoo؟", answer: "نعم، نقدم خدمات تنصيب، إعداد، وتخصيص نظام Odoo ليتناسب مع كافة احتياجات مؤسستك المالية والإدارية والموارد البشرية." }
+    ];
+
+    const faqs = faqData.map((f, i) => {
+      const open = s.openFaq === i;
+      return {
+        question: f.question,
+        answer: f.answer,
+        toggle: this.toggleFaq(i),
+        iconStyle: "width: 32px; height: 32px; flex: 0 0 auto; border-radius: 11px; background: #eaf1f7; display: flex; align-items: center; justify-content: center;"
+          + " font-size: 18px; color: #0077B6; transition: transform .3s ease;"
+          + " transform: rotate(" + (open ? "45deg" : "0deg") + ");"
+          + " box-shadow: " + (open
+            ? "inset 3px 3px 8px rgba(2,62,138,0.16), inset -3px -3px 8px rgba(255,255,255,0.9)"
+            : "3px 3px 8px rgba(2,62,138,0.13), -3px -3px 8px rgba(255,255,255,0.95)") + ";",
+        bodyStyle: "overflow: hidden; transition: max-height .38s ease, opacity .3s ease;"
+          + " max-height: " + (open ? "340px" : "0px") + "; opacity: " + (open ? "1" : "0") + ";"
+      };
+    });
+
+    return {
+      isHome: s.page === "home",
+      isPlatform: s.page === "platform",
+      isCompany: s.page === "company",
+      isContact: s.page === "contact",
+      canvasRef: this.canvasRef,
+      navItems,
+      toggleMenu: this.toggleMenu,
+      closeMenu: this.closeMenu,
+      goContact: this.go("contact"),
+      goPlatform: this.go("platform"),
+      scrollTop: this.scrollTop,
+
+      mobileBarDisplay: mobile ? "flex" : "none",
+      sidebarStyle: "position: fixed; top: 0; right: 0; bottom: 0; width: 272px; z-index: 70; padding: 30px 24px;"
+        + " background: #eaf1f7; display: flex; flex-direction: column; justify-content: space-between; overflow-y: auto;"
+        + " box-shadow: -14px 0 34px rgba(2,62,138,0.10);"
+        + " transition: transform .36s cubic-bezier(.4,0,.2,1);"
+        + " transform: translateX(" + (mobile && !s.menuOpen ? "100%" : "0") + ");",
+      backdropStyle: "position: fixed; inset: 0; z-index: 65; background: rgba(2,36,80,0.32); backdrop-filter: blur(3px);"
+        + " transition: opacity .3s ease;"
+        + " opacity: " + (mobile && s.menuOpen ? "1" : "0") + ";"
+        + " pointer-events: " + (mobile && s.menuOpen ? "auto" : "none") + ";",
+      mainStyle: "margin-right: " + (mobile ? "0" : "272px") + "; margin-left: 0; padding: " + (mobile ? "96px 20px 60px" : "clamp(44px, 5vw, 84px) clamp(24px, 5vw, 76px) 80px") + ";"
+        + " max-width: 1360px;",
+
+      logos: ["مدرسة منارة المتوسط", "مدرسة نجوم مدرستي", "مدرسة Eagle Rock الدولية", "متجر لمسة الأناقة", "متجر تك ستور للإلكترونيات", "منصة سوق ليبيا الإلكترونية", "موقع دار النشر الحديثة"],
+      
+      features: [
+        { tag: "01", title: "تحليل دقيق للاحتياجات", body: "نحلل احتياجات مشروعك بدقة لنضمن أن الحل المطروح يلامس مشكلتك الحقيقية ويحقق أهدافك." },
+        { tag: "02", title: "حلول قابلة للتوسع", body: "نصمم بنية برمجية مرنة تنمو مع نمو أعمالك دون الحاجة لإعادة بناء النظام من الصفر." },
+        { tag: "03", title: "تقنيات حديثة وآمنة", body: "نستخدم أحدث الأطر البرمجية ونطبق معايير الأمان السيبراني لحماية بياناتك وأنظمتك." },
+        { tag: "04", title: "دعم فني مستمر", body: "نوفر دعماً فنياً وصيانة دورية بعد الإطلاق لضمان استقرار عملك على المدى الطويل." }
+      ],
+      
+      timeline: [
+        { when: "المرحلة 01 · التحليل", title: "تحليل احتياجاتك", body: "نبدأ بالاستماع إلى فكرتك وفهم طبيعة عملك والتحديات التي تواجهها، ثم نحولها إلى متطلبات واضحة وخطة عمل مدروسة." },
+        { when: "المرحلة 02 · التخطيط", title: "التخطيط وتصميم الحل", body: "نصمم هيكل النظام وتجربة المستخدم وقاعدة البيانات بما يضمن سهولة الاستخدام وقابلية التوسع مستقبلاً." },
+        { when: "المرحلة 03 · التطوير", title: "التطوير البرمجي", body: "يقوم فريقنا ببناء النظام باستخدام أحدث التقنيات مع التركيز على الأداء، والأمان، وجودة الكود." },
+        { when: "المرحلة 04 · الإطلاق", title: "الاختبار والإطلاق", body: "نجري اختبارات شاملة ثم نساعدك في نشر النظام وتشغيله وتهيئة بيئة العمل لضمان انطلاق مشروعك بأفضل صورة." },
+        { when: "المرحلة 05 · الدعم", title: "الدعم والتطوير المستمر", body: "نقدم الدعم الفني والصيانة والتحديثات، ونساعدك على تطوير النظام مع نمو أعمالك." }
+      ],
+      
+      faqs,
+
+      modules: this.modules.map((m) => Object.assign({}, m, {
+        imgStyle: "width: 100%; height: " + (m.imgHeight || "190px") + "; display: block; background-image: url('" + m.img + "');"
+          + " background-size: " + (m.fit || "cover") + "; background-position: center; background-repeat: no-repeat;"
+          + " background-color: #eaf1f7; filter: saturate(0.85) contrast(1.02);"
+      })),
+      
+      specs: [
+        { label: "التقنيات المستخدمة", value: "React, Node.js, Java, C#, PHP, Python, Odoo, Tailwind" },
+        { label: "الأمان", value: "حماية متقدمة من الهجمات السيبرانية" },
+        { label: "التوافق", value: "مواقع وتطبيقات متوافقة مع CBL" },
+        { label: "البنية", value: "بنية تحتية سحابية قابلة للتوسع" },
+        { label: "التطوير", value: "تطبيقات iOS, Android ومتجاوبة" },
+        { label: "الدعم", value: "دعم فني وصيانة مستمرة" }
+      ],
+
+      values: [
+        { no: "01", title: "رؤيتنا", body: "أن نكون الشريك التقني الأول للشركات والمؤسسات التي تسعى إلى تطوير أعمالها من خلال حلول برمجية مبتكرة وموثوقة." },
+        { no: "02", title: "رسالتنا", body: "تقديم حلول برمجية احترافية تجمع بين الجودة، والابتكار، وسهولة الاستخدام، بما يساعد عملاءنا على تحسين الأداء وتحقيق النمو المستدام." },
+        { no: "03", title: "قيمنا", body: "نؤمن أن نجاح أي مشروع يبدأ بفهم احتياجات العميل قبل كتابة أول سطر برمجي، ونبني شراكات طويلة الأمد." }
+      ],
+      
+      milestones: [
+        { year: "2023", body: "تأسست Envi لتحويل الأفكار إلى أنظمة برمجية تدفع الأعمال نحو الأمام." },
+        { year: "2024", body: "إصدار نظام ERPSchool لإدارة المدارس واعتماده في عدة مؤسسات تعليمية، وتوسع خدماتنا لتشمل تصميم المواقع وتطوير التطبيقات." },
+        { year: "2025", body: "إطلاق خدمات أتمتة العمليات وتخصيص نظام Odoo ودمج تقنيات السحابة الحديثة." },
+        { year: "2026", body: "تحقيق نمو كبير وبناء شراكات استراتيجية مع مدارس ومتاجر إلكترونية ومؤسسات رائدة." }
+      ],
+
+      contacts: [
+        { label: "البريد الإلكتروني", value: "info@envi.ly", note: "تواصل معنا لمناقشة مشروعك أو طلب الاستشارات." },
+        { label: "واتساب", value: "+218915897498", note: "تواصل مباشر وسريع للاستفسارات الفنية." },
+        { label: "المقر", value: "طرابلس - ليبيا", note: "نعمل عن بُعد مع عملائنا في مختلف المناطق." }
+      ],
+      
+      form: s.form,
+      errors: {
+        name: s.errors.name || "",
+        message: s.errors.message || ""
+      },
+      onName: this.setField("name"),
+      onMessage: this.setField("message"),
+      onSubmit: this.onSubmit,
+      submitLabel: s.submitted ? "تم فتح واتساب ✓" : "إرسال عبر واتساب",
+      nameInputStyle: this.input(!!s.errors.name),
+      msgInputStyle: this.input(!!s.errors.message) + " min-height: 130px;",
+      nameErrStyle: this.err(s.errors.name),
+      msgErrStyle: this.err(s.errors.message),
+      successStyle: "font-size: 14px; line-height: 1.65; color: #0077B6; font-weight: 600; padding: 14px 16px; border-radius: 14px; text-align: right;"
+        + " background: #eaf1f7; box-shadow: inset 4px 4px 10px rgba(2,62,138,0.10), inset -4px -4px 10px rgba(255,255,255,0.95);"
+        + " display: " + (s.submitted ? "block" : "none") + ";"
+    };
+  }
+}
+</script>
 </body>
 </html>
